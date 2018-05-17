@@ -1,5 +1,5 @@
-"""	        PKU_Crwaler	"""
-"""	     	  BY IML  	"""
+"""	      PKU_Crawler		"""
+"""	     	BY IML  		"""
 """	shin10256|gmail.com   	"""	
 """	shino1025.blog.me    	"""
 """	github.com/iml1111   	"""
