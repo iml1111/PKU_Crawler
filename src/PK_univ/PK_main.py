@@ -51,6 +51,7 @@ def content_parse(url):
 	obj = bs0bj.find("img",{'alt':"첨부 파일"})
 	if not obj:
 		db_record.update({"file_is":0})
+		db_record.update({"file_link":"None"})
 	else:
 		db_record.update({"file_is":1})
 		db_record.update({"file_link":(PK_domain \
