@@ -1,9 +1,8 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
-from content_parse import text_parsing
 from db_manager import db_manage
 import time
-
+#from content_parse import text_parsing
 
 PK_domain = "http://www.pknu.ac.kr"
 
@@ -34,10 +33,9 @@ def list_parse(bs0bj):
 			db_record.update({"date":obj.get_text().strip()})
 
 			obj = post.find("td",{"class":"count"})
-			db_record.update({"count":obj.get_text().strip()})
+			db_record.update({"count":int(obj.get_text().strip())})
 
 			db_manage("add","PK_main_", db_record)
-
 
 
 def content_parse(url):
@@ -58,7 +56,8 @@ def content_parse(url):
 			+ obj.findNext('a').attrs['href']).strip()})
 	
 	obj = bs0bj.find("div",{'class':"bbs-body"})
-	db_record.update({"content":text_parsing(obj,PK_domain)})
+	db_record.update({"post":str(obj)})
+	#db_record.update({"content":text_parsing(obj,PK_domain)})
 
 	return db_record
 
