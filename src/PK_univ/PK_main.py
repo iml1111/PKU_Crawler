@@ -13,12 +13,16 @@ def parsing(bs0bj):
 
 
 def list_parse(bs0bj):
+	count = 1
 	post_list = bs0bj.findAll("tr")
 
 	for post in post_list:
 		obj = post.find("td",{"class":"no"})
 		if obj != None and obj.get_text() != "":
 			db_record = {}
+
+			db_record.update({"no":str(count)})
+			count += 1
 
 			obj = post.find("td",{"class":"title"})
 			db_record.update({"title":obj.get_text().strip()})

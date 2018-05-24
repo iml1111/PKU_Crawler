@@ -4,9 +4,12 @@ import datetime
 
 t = datetime.datetime.now()
 db_list_path = ".\\DB_list\\"
-con_table = (('title','TEXT'),('email','TEXT'),('file_is','INTEAGER'),\
-				('file_link','TEXT'),('post','TEXT'),('author','TEXT'),\
-				('date','TEXT'),('count','INTEAGER'),)
+'''
+왜 안되지? 
+con_table = ('no','INTEAGER'),('title','TEXT'),('email','TEXT'),\
+('file_is','INTEAGER'),('file_link','TEXT'),('post','TEXT'),\
+('author','TEXT'),('date','TEXT'),('count','INTEAGER'),
+'''
 
 class Table_iml(Table):
     def insert(self, args):
@@ -28,7 +31,9 @@ def add_record(db_name = None, record = None):
 	db_path = db_list_path + db_name + str(t.month) + str(t.day) + ".db"
 	db = Database(db_path)
 	table = Table_iml("post", db)
-	table.create(con_table, mode ="open")
+	table.create(('no','INTEAGER'),('title','TEXT'),('email','TEXT'),\
+				('file_is','INTEAGER'),('file_link','TEXT'),('post','TEXT'),\
+				('author','TEXT'),('date','TEXT'),('count','INTEAGER'), mode ="open")
 	table.open()
 	table.insert(record)
 	db.commit()
