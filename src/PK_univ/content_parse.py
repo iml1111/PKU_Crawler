@@ -1,9 +1,7 @@
+# Unused sources for now
+
 from bs4 import BeautifulSoup, Tag, NavigableString
 import sys
-
-# 첨부파일이 복수라면
-# 표는?
-# 그냥 태그를 통쨰로 뽑는게 낫지 않나?
 
 def clone(el):
     if isinstance(el, NavigableString):
