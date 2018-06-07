@@ -10,8 +10,10 @@ from crawl_select import Crawling
 
 #for Debug
 target = "PK_univ"
-URL = List[0]   
+URL = List[0:4]   
 
 if __name__ == '__main__':
-	Crawling(target, URL)
+
+	for url in URL:
+		Crawling(target, url)
 		

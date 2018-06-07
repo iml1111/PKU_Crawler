@@ -3,29 +3,29 @@ from bs4 import BeautifulSoup
 from db_manager import db_manage
 
 PK_domain = "http://www.pknu.ac.kr"
+start_datetime = "2017-01-01 00:00"
 
 def parsing(bs0bj, name):
 	bs0bj = bs0bj.find("table",{"class":"bbs-list"})
 	summary = bs0bj.attrs['summary']
 	
-	db_docs = list_parse(bs0bj)
-	db_manage("add", name, db_docs)
-	db_manage("view", name)
-	print(summary)
+	while True:
+		db_docs = list_parse(bs0bj, name)
+		db_manage("add", name, db_docs)
+		#if len(db_docs) != 15:
+		##### 다음 페이지로 넘어가 bs0bj 할당
+		##### 자바스크립트 렌더링 크롤링 필요
+		break
+	db_manage("view")
 
-def list_parse(bs0bj):
-	count = 1
+def list_parse(bs0bj, name):
 	db_docs = []
-
 	post_list = bs0bj.findAll("tr")
-	post_list.reverse()
 
 	for post in post_list:
 		obj = post.find("td",{"class":"no"})
 		if obj != None and obj.get_text() != "":
 			db_record = {}
-			db_record.update({"no":str(count)})
-			count += 1
 			obj = post.find("td",{"class":"title"})
 			db_record.update({"title":obj.get_text().strip()})
 			obj = obj.find("a").attrs['href']
@@ -37,7 +37,11 @@ def list_parse(bs0bj):
 			obj = post.find("td",{"class":"count"})
 			db_record.update({"count":int(obj.get_text().strip())})
 
-			db_docs.append(db_record)
+			if db_record['date'] >= start_datetime \
+									or name == 'PK_main_reference':
+				db_docs.append(db_record)
+			else:
+				break
 
 	return db_docs
 
@@ -45,9 +49,10 @@ def content_parse(url):
 	html = URLparser(url)
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	db_record = {}
-	
+
 	obj = bs0bj.find(text ="이메일")
-	db_record.update({"email":obj.findNext('td').get_text().strip()})
+	if obj != None:
+		db_record.update({"email":obj.findNext('td').get_text().strip()})
 	obj = bs0bj.find("img",{'alt':"첨부 파일"})
 	if not obj:
 		db_record.update({"file_is":0})

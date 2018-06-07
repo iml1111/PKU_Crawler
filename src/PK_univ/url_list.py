@@ -1,8 +1,6 @@
 List = (\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=5&p_boardcode=PK10000005",\
 	'info':"PK_main_notice"},\
-	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=7&p_boardcode=PK10000007",\
-	'info':"PK_main_journal"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=34&p_boardcode=PK10000034",\
 	'info':"PK_main_reference"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=15&p_boardcode=PK10000015",\
@@ -20,3 +18,8 @@ List = (\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=7&p_boardcode=PK10000007",\
 	'info':"PK_main_volunteer"}\
 	)
+
+'''
+	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=7&p_boardcode=PK10000007",\
+	'info':"PK_main_journal"},\
+'''
