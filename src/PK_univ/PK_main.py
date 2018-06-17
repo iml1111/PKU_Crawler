@@ -2,25 +2,34 @@ from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 
-PK_domain = "http://www.pknu.ac.kr"
-start_datetime = "2017-01-01 00:00"
+start_datetime = "2018-01-01 00:00"
 
-def parsing(bs0bj, name):
-	bs0bj = bs0bj.find("table",{"class":"bbs-list"})
-	summary = bs0bj.attrs['summary']
-	
+def parsing(driver, URL):
+	page = 1
 	while True:
-		db_docs = list_parse(bs0bj, name)
-		db_manage("add", name, db_docs)
-		#if len(db_docs) != 15:
-		##### 다음 페이지로 넘어가 bs0bj 할당
-		##### 자바스크립트 렌더링 크롤링 필요
-		break
+		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
+		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
+		bs0bj = bs0bj.find("table",{"class":"bbs-list"})
+
+		if page == 1: 
+			summary = bs0bj.attrs['summary']	
+		db_docs = list_parse(bs0bj, URL)
+		print(len(db_docs))
+			
+		if len(db_docs) == 0:
+			break
+		else:
+			db_manage("add", URL['info'], db_docs)
+			page += 1
+			driver.execute_script("goPage(" + str(page) + ")")
+
 	db_manage("view")
 
-def list_parse(bs0bj, name):
+
+def list_parse(bs0bj, URL):
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
+	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
 
 	for post in post_list:
 		obj = post.find("td",{"class":"no"})
@@ -29,27 +38,29 @@ def list_parse(bs0bj, name):
 			obj = post.find("td",{"class":"title"})
 			db_record.update({"title":obj.get_text().strip()})
 			obj = obj.find("a").attrs['href']
-			db_record.update(content_parse(PK_domain + obj))
+			db_record.update(content_parse(domain, domain + obj))
 			obj = post.find("td",{"class":"author"})
 			db_record.update({"author":obj.get_text().strip()})
-			obj = post.find("td",{"class":"date"})
-			db_record.update({"date":obj.get_text().strip()})
 			obj = post.find("td",{"class":"count"})
 			db_record.update({"count":int(obj.get_text().strip())})
 
+			print(db_record['date'])
 			if db_record['date'] >= start_datetime \
-									or name == 'PK_main_reference':
+									or URL['info'] == 'PK_main_reference':
 				db_docs.append(db_record)
 			else:
 				break
 
 	return db_docs
 
-def content_parse(url):
+
+def content_parse(domain, url):
 	html = URLparser(url)
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	db_record = {}
 
+	obj = bs0bj.find(text="작성일")
+	db_record.update({"date":obj.findNext('td').get_text().strip()})
 	obj = bs0bj.find(text ="이메일")
 	if obj != None:
 		db_record.update({"email":obj.findNext('td').get_text().strip()})
@@ -59,7 +70,7 @@ def content_parse(url):
 		db_record.update({"file_link":"None"})
 	else:
 		db_record.update({"file_is":1})
-		db_record.update({"file_link":(PK_domain \
+		db_record.update({"file_link":(domain \
 			+ obj.findNext('a').attrs['href']).strip()})
 	obj = bs0bj.find("div",{'class':"bbs-body"})
 	db_record.update({"post":str(obj)})
