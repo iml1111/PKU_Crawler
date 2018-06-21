@@ -8,5 +8,5 @@ sys.path.insert(0,'C:\\Users\\IML\\Desktop\\U-I_Board_Crawler\\src')
 sys.path.insert(0,'C:\\Users\\IML\\Desktop\\U-I_Board_Crawler\\src\\PK_univ')
 sys.path.insert(0, 'C:\\Users\\IML\\Desktop\\U-I_Board_Crawler\\src\\DB_list')
 
-YJ_id = "201512801"
-YJ_pw = "1113434"
+YJ_1 = "201512801"
+YJ_2 = "1113434"

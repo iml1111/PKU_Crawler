@@ -2,19 +2,16 @@ from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 
-start_datetime = "2018-01-01 00:00"
+start_datetime = "2018-06-21 00:00"
 
 def parsing(driver, URL):
 	page = 1
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
 		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
-		bs0bj = bs0bj.find("table",{"class":"bbs-list"})
-
-		if page == 1: 
-			summary = bs0bj.attrs['summary']	
+		bs0bj = bs0bj.find("table",{"class":"bbs-list"})	
 		db_docs = list_parse(bs0bj, URL)
-		print(len(db_docs))
+		print('# this post of page is ' + str(len(db_docs)))
 			
 		if len(db_docs) == 0:
 			break
@@ -45,8 +42,7 @@ def list_parse(bs0bj, URL):
 			db_record.update({"count":int(obj.get_text().strip())})
 
 			print(db_record['date'])
-			if db_record['date'] >= start_datetime \
-									or URL['info'] == 'PK_main_reference':
+			if db_record['date'] >= start_datetime:
 				db_docs.append(db_record)
 			else:
 				break

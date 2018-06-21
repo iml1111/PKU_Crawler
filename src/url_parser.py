@@ -5,7 +5,7 @@ class AppURLopener(FancyURLopener):
    	version = "Mozilla/5.0"
 
 def URLdriving(URL):
-	print('URL parsing > ' + URL['url'])
+	print('Driver : PhantomJS')
 	driver = webdriver.PhantomJS()
 	driver.implicitly_wait(1)
 	driver.get(URL['url'])
