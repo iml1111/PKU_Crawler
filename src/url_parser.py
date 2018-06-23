@@ -6,9 +6,9 @@ class AppURLopener(FancyURLopener):
 
 def URLdriving(URL):
 	print('Driver : PhantomJS')
-	driver = webdriver.PhantomJS()
-	driver.implicitly_wait(1)
+	driver = webdriver.PhantomJS("./phantomjs-2.1.1-windows/bin/phantomjs")
 	driver.get(URL['url'])
+	driver.implicitly_wait(1)
 
 	return driver
 

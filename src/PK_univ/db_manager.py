@@ -1,7 +1,7 @@
 import pymongo 
 import os
 import datetime
-
+# 디버깅을 위한 코드, 추후에 전체 수정 필요
 t = datetime.datetime.now()
 
 db_name = 'uni_board'

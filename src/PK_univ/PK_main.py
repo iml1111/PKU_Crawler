@@ -34,8 +34,10 @@ def list_parse(bs0bj, URL):
 			db_record = {}
 			obj = post.find("td",{"class":"title"})
 			db_record.update({"title":obj.get_text().strip()})
+			
 			obj = obj.find("a").attrs['href']
 			db_record.update(content_parse(domain, domain + obj))
+
 			obj = post.find("td",{"class":"author"})
 			db_record.update({"author":obj.get_text().strip()})
 			obj = post.find("td",{"class":"count"})

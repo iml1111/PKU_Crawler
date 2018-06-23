@@ -18,7 +18,20 @@ List = (\
 	'info':"PK_main_volunteer"},\
 	# 부경대 입학처, 8부터
 	{'url':"http://iphak.pknu.ac.kr/pknu/board/board.htm?code=iphak_help&ctg_cd=all",\
-	'info':"PK_admission_notice"}\
+	'info':"PK_admission_notice"},\
+	# 부경대 취업정보 9부터
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2342",\
+	'info':"PK_job_normal"},\
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2343",\
+	'info':"PK_job_recommend"},\
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2344",\
+	'info':"PK_job_overseas"},\
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2386",\
+	'info':"PK_job_competition"},\
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2388",\
+	'info':"PK_job_education"},\
+	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2401",\
+	'info':"PK_job_recruit"}\
 	)
 
 '''
