@@ -30,8 +30,13 @@ List = (\
 	'info':"PK_job_competition"},\
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2388",\
 	'info':"PK_job_education"},\
-	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2401",\
-	'info':"PK_job_recruit"}\
+	# 부경대 컴퓨터공학과 14부터
+	{'url':"http://ce.pknu.ac.kr/05_community/01_community.php",\
+	'info':"PK_ce_notice"},\
+	{'url':"http://ce.pknu.ac.kr/05_community/03_community.php",\
+	'info':"PK_ce_jobinfo"},\
+	{'url':"http://ce.pknu.ac.kr/04_samsung/06_samsung.php",\
+	'info':"PK_ce_samsungsw"}\
 	)
 
 '''

@@ -31,11 +31,15 @@ def db_manage(mode, coll_name = None, doc = None):
 		for col in db.collection_names():
 			if db[col].count() != 0:
 				print(col + " count: " + str(db[col].count()))
+				
 				for i in db[col].find({},{'_id':0,'date':1,'title':1}\
 											).sort([("date", -1)]):
 					print(i)
+				'''
+				for i in db[col].find():
+					print(i)
+				'''
 				db[col].remove({})
-
 
 def db_access():
 	client = pymongo.MongoClient(ip,port)

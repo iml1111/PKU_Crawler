@@ -56,6 +56,7 @@ def content_parse(domain, url):
 	html = URLparser(url)
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	db_record = {}
+	db_record.update({"url":url})
 
 	obj = bs0bj.find(text="작성일")
 	db_record.update({"date":obj.findNext('td').get_text().strip()})

@@ -57,6 +57,7 @@ def content_parse(domain, url):
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	bs0bj =bs0bj.find("div",{"class":"tableArea"}).find("table",{"class":"viewTable"})
 	db_record = {}
+	db_record.update({"url":url})
 
 	obj = bs0bj.find("thead").find("tr")
 	obj = bs0bj.find_next("tr")
