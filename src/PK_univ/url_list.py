@@ -36,7 +36,10 @@ List = (\
 	{'url':"http://ce.pknu.ac.kr/05_community/03_community.php",\
 	'info':"PK_ce_jobinfo"},\
 	{'url':"http://ce.pknu.ac.kr/04_samsung/06_samsung.php",\
-	'info':"PK_ce_samsungsw"}\
+	'info':"PK_ce_samsungsw"},\
+	#부경대 컴공 대학원 17부터
+	{'url':"http://ce.pknu.ac.kr/03_uni/04_uni.php",\
+	'info':"PK_ce_graduate"}\
 	)
 
 '''

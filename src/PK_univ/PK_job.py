@@ -33,11 +33,10 @@ def list_parse(bs0bj, URL):
 	for post in post_list:
 		if post.find('span').find('img') is not None:
 			continue
-
+			
 		obj = post.find("a")
 		db_record = {}
 		db_record.update(content_parse(domain, domain + obj.attrs["href"]))
-
 		print(db_record['date'])
 		if db_record['date'] >= start_datetime:
 			db_docs.append(db_record)

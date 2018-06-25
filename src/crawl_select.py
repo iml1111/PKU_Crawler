@@ -4,6 +4,7 @@ from url_parser import URLdriving
 import PK_main
 import PK_admission
 import PK_job
+import PK_ce
 
 def Crawling(target,URL):
 	select = URL['info'].split('_')[1]
@@ -19,3 +20,5 @@ def Crawling(target,URL):
 			PK_admission.parsing(driver, URL)
 		elif select == 'job':
 			PK_job.parsing(driver, URL)
+		elif select == 'ce':
+			PK_ce.parsing(driver, URL)
