@@ -6,19 +6,20 @@ import PK_admission
 import PK_job
 import PK_ce
 
-def Crawling(target,URL):
+def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 	driver = URLdriving(URL)
 
 	if target == 'PK_univ':
+		print('-------------------------------------')
 		print('Selected <' + select +'>')
 		print('-------------------------------------')
 		
 		if select == 'main':
-			PK_main.parsing(driver, URL)
+			PK_main.parsing(driver, URL, is_first)
 		elif select == 'admission':
-			PK_admission.parsing(driver, URL)
+			PK_admission.parsing(driver, URL, is_first)
 		elif select == 'job':
-			PK_job.parsing(driver, URL)
+			PK_job.parsing(driver, URL, is_first)
 		elif select == 'ce':
-			PK_ce.parsing(driver, URL)
+			PK_ce.parsing(driver, URL, is_first)
