@@ -16,10 +16,7 @@ List = (\
 	'info':"PK_main_lost"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=22&p_boardcode=PK10000022",\
 	'info':"PK_main_volunteer"},\
-	# 부경대 입학처, 8부터
-	{'url':"http://iphak.pknu.ac.kr/pknu/board/board.htm?code=iphak_help&ctg_cd=all",\
-	'info':"PK_admission_notice"},\
-	# 부경대 취업정보 9부터
+	# 부경대 취업정보 8부터
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2342",\
 	'info':"PK_job_normal"},\
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2343",\
@@ -30,14 +27,14 @@ List = (\
 	'info':"PK_job_competition"},\
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2388",\
 	'info':"PK_job_education"},\
-	# 부경대 컴퓨터공학과 14부터
+	# 부경대 컴퓨터공학과 13부터
 	{'url':"http://ce.pknu.ac.kr/05_community/01_community.php",\
 	'info':"PK_ce_notice"},\
 	{'url':"http://ce.pknu.ac.kr/05_community/03_community.php",\
 	'info':"PK_ce_jobinfo"},\
 	{'url':"http://ce.pknu.ac.kr/04_samsung/06_samsung.php",\
 	'info':"PK_ce_samsungsw"},\
-	#부경대 컴공 대학원 17부터
+	#부경대 컴공 대학원 16부터
 	{'url':"http://ce.pknu.ac.kr/03_uni/04_uni.php",\
 	'info':"PK_ce_graduate"}\
 	)

@@ -12,18 +12,21 @@ import time
 
 #for Debug
 target = "PK_univ"
-URL = List[0:1] 
+URL = List[:] 
 
 if __name__ == '__main__':
 	print("HI! I'M IML.")
 	print('First Crawling Start!')
 	print('target: ' + target)
+
+	mode = input("mode Select: ")
 	
-	for url in URL:
-		print('< URL parsing Start! >\n' + str(url['url']))
-		time.sleep(.6)
-		Crawling(target, url, True)
-		print('-------------------------------------')
+	if mode == "1":
+		for url in URL:
+			print('< URL parsing Start! >\n' + str(url['url']))
+			time.sleep(.6)
+			Crawling(target, url, True)
+			print('-------------------------------------')
 
 	while(True):
 		print('\n\nRenewal Crawling Start...\n\n')

@@ -1,8 +1,9 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
+from PK_global import PK_main_start
 
-start_datetime = "2018-07-05 16:00"
+start_datetime = PK_main_start
 recent_date = None
 
 def parsing(driver, URL, is_first):
@@ -36,7 +37,8 @@ def parsing(driver, URL, is_first):
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
 	recent_date = None
 
-	db_manage("view")
+	if is_first == True:
+		db_manage("view")
 
 
 def list_parse(bs0bj, URL, latest_datetime = None):
@@ -72,8 +74,6 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 				db_docs.append(db_record)		
 			else:
 				break
-
-
 
 	return db_docs
 
