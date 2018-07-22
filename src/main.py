@@ -3,8 +3,6 @@
 """	shin10256|gmail.com   	"""	
 """	shino1025.blog.me    	"""
 """	github.com/iml1111   	"""
-#1. 시간 조건 전역변수 파일로 옮기기
-#2. 주석달기 및 영어 번역
 import iml_global
 from url_list import List
 from crawl_select import Crawling
@@ -21,13 +19,14 @@ if __name__ == '__main__':
 
 	mode = input("mode Select: ")
 	
+# Start mode
 	if mode == "1":
 		for url in URL:
 			print('< URL parsing Start! >\n' + str(url['url']))
 			time.sleep(.6)
 			Crawling(target, url, True)
 			print('-------------------------------------')
-
+# Renewal mode
 	while(True):
 		print('\n\nRenewal Crawling Start...\n\n')
 		for url in URL:

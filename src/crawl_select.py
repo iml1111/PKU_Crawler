@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from url_parser import URLdriving
 # 부경대 공지사항 목록
-import PK_main
+import PK_main 
 import PK_job
 import PK_ce
 
