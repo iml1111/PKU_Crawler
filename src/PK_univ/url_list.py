@@ -7,7 +7,7 @@ List = (\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=18&p_boardcode=PK10000018",\
 	'info':"PK_main_openmarket"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=16&p_boardcode=PK10000016",\
-	'info':"PK_main_circle&study"},\
+	'info':"PK_main_circle"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=20&p_boardcode=PK10000020",\
 	'info':"PK_main_boarding"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=17&p_boardcode=PK10000017",\

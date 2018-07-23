@@ -27,6 +27,10 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 				if i['title'] == j['title']:
 					cnt = 1
 					break
+				if i['title'].find("페미") != -1:
+					cnt = 1
+					break
+
 			if cnt == 0:
 				coll.insert(i)
 			else:
