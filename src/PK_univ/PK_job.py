@@ -3,6 +3,7 @@ from url_parser import URLdriving
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 from PK_global import PK_job_start
+from tag import tagging
 
 start_datetime = PK_job_start
 recent_date = None
@@ -63,6 +64,10 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 		obj = post.find("a")
 		db_record = {}
 		db_record.update(content_parse(domain, domain + obj.attrs["href"]))
+
+		# 태그 생성
+		db_record.update(tagging(URL, db_record['title']))
+
 		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
 		if db_record['date'] >= start_datetime and \
