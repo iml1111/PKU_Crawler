@@ -23,7 +23,6 @@ if __name__ == '__main__':
 	if mode == "1":
 		for url in URL:
 			print('< URL parsing Start! >\n' + str(url['url']))
-			time.sleep(.6)
 			Crawling(target, url, True)
 			print('-------------------------------------')
 # Renewal mode
@@ -32,7 +31,6 @@ if __name__ == '__main__':
 			print('\n\nRenewal Crawling Start...\n\n')
 			for url in URL:
 				print('< URL parsing Renewal >\n' + str(url['url']))
-				time.sleep(.6)
 				Crawling(target, url, False)
 				print('-------------------------------------')
 		

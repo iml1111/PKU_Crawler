@@ -5,7 +5,6 @@ def tagging(URL, title):
 	title = title.upper()
 
 	if url[1] == "main":
-		
 		### 부경대 메인 공지사항
 		if url[2] == "notice":
 			tag_list.append("공지")
@@ -45,7 +44,7 @@ def tagging(URL, title):
 			tag_list.append("알바")
 
 		# 부경대 메인 봉사
-		if title.find("봉사") != -1 or url[2] == "volunteer":
+		elif url[2] == "volunteer":
 			tag_list.append("봉사")
 
 		# 부경대 메인 동아리
@@ -142,7 +141,7 @@ def tagging(URL, title):
 	###### 공용 부가 태그 ######
 	if title.find("토익") != -1 or title.find("토플") != -1\
 	or title.find("TOEIC") != -1 or title.find("TOEFL") != -1\
-	or title.find("영어회화") != -1:
+	or title.find("영어회화") != -1 or title.find("영문학") != -1:
 		tag_list.append("영어")
 
 	if title.find("HSK") != -1 or title.find("JPT") != -1\
@@ -161,7 +160,8 @@ def tagging(URL, title):
 	if title.find("행사") != -1 or title.find("참가") != -1\
 		or title.find("쇼") != -1 or title.find("프로그램") != -1\
 		or title.find("대회") != -1\
-		or (url[1] == 'job' and url[2] == 'competition'):
+		or (url[1] == 'job' and url[2] == 'competition')\
+		or title.find("캠프"):
 		tag_list.append("행사")
 
 	if title.find("특강") != -1:
@@ -170,7 +170,7 @@ def tagging(URL, title):
 	if title.find("멘토") != -1 or title.find("멘티") != -1:
 		tag_list.append("멘토링")
 
-	if title.find("인문학") != -1:
+	if title.find("인문") != -1:
 		tag_list.append("인문학")
 
 	if title.find("모집") != -1:
@@ -198,7 +198,7 @@ def tagging(URL, title):
 	or ((title.find("강사") != -1 or title.find("선생님") != -1)\
 	and title.find("특강") == -1 and title.find("채용") == -1\
 	and title.find("선발") == -1):
-		tag_list.append("과외")
+		tag_list.append("과외&강사")
 
 	if (title.find("IT") != -1 and \
 	title[title.find("IT") + 2].isalpha() == False \
@@ -209,8 +209,8 @@ def tagging(URL, title):
 	or title.find("안드로이드") != -1\
 	or title.find("소프트웨어") != -1\
 	or title.find("KAKAO") != -1\
-	or title.find("네이버") != -1\
-	or title.find("SW") != -1:#?????????
+	or (title.find("네이버") != -1 and title.find("네이버스") == -1)\
+	or (title.find("SW") != -1 and title.find("SWIM") == -1):#?????????
 		tag_list.append("IT&컴퓨터")
 
 	return {"tag":tag_list}
