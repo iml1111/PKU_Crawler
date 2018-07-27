@@ -3,6 +3,7 @@ from url_parser import URLdriving
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 from PK_global import PK_ce_start
+from tag import tagging
 
 start_datetime = PK_ce_start
 recent_date = None
@@ -19,6 +20,7 @@ def parsing(driver, URL, is_first):
 		# first 크롤링일 경우 or renewal 크롤링일 경우
 		if is_first == True:   
 			db_docs = list_parse(bs0bj, URL, page)
+		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
 			latest_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
@@ -59,6 +61,9 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 
 		obj = post.find("td",{"class":"txt-l"}).find("a")
 		db_record.update(content_parse(domain, domain + obj.attrs["href"]))
+
+		# 태그 생성
+		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
