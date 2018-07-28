@@ -42,13 +42,14 @@ def tagging(URL, title):
 	elif url[1] == 'job' and url[2] == 'education':
 		tag_list.append("교육&설명회")
 
+	#부경대 컴퓨터공학과 홈페이지
 	elif url[1] == "ce":
 		tag_ce(url, title, tag_list)
 
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
 
-	return {"tag":tag_list}
+	return {"tag":list(set(tag_list))}
 
 ########################################################################
 
@@ -196,8 +197,12 @@ def tag_public(url, title, tag_list):
 		or title.find("대회") != -1\
 		or (url[1] == 'job' and url[2] == 'competition')\
 		or title.find("캠프") != -1 or title.find("축제") != -1\
-		or title.find("박람회") != -1 or title.find("콘서트") != -1:
+		or title.find("박람회") != -1 or title.find("콘서트") != -1\
+		or title.find("공모전") != -1:
 		tag_list.append("행사")
+
+	if title.find("공모") != -1 or title.find("대외활동") != -1:
+		tag_list.append("공모전&대외활동")
 
 	if title.find("특강") != -1:
 		tag_list.append("특강")
@@ -227,7 +232,7 @@ def tag_public(url, title, tag_list):
 	if title.find("디자인") != -1 and title.find("디자이너") != -1:
 		tag_list.append("디자인")
 
-	if title.find("봉사") != -1 and url[2] != "volunteer":
+	if title.find("봉사") != -1:
 		tag_list.append("봉사")
 
 	if title.find("진로") != -1 or title.find("인재") != -1\
@@ -261,13 +266,17 @@ def tag_public(url, title, tag_list):
 	and alpha(title, title.find("SW")) == 2)\
 	or title.find("DATA") != -1\
 	or title.find("알고리즘") != -1\
-	or title.find("S/W") != -1:
+	or title.find("S/W") != -1\
+	or (title.find("VR") != -1 \
+	and alpha(title, title.find("VR")) == 2):
 		tag_list.append("IT&컴퓨터")
 
 
 #### 부경대 컴퓨터공학과 홈페이지
 def tag_ce(url, title, tag_list):
 	tag_list.append("컴퓨터공학과")
+	tag_list.append("IT&컴퓨터")
+	tag_list.append("이공계")
 
 	## 부경대 컴공 공지 
 	if url[2] == "notice":
