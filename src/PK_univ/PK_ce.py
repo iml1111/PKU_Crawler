@@ -85,7 +85,6 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 def content_parse(domain, url):
 	html = URLparser(url)
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
-	bs0bj =bs0bj.find("table").find("tbody")
 	db_record = {}
 	db_record.update({"url":url})
 
@@ -96,9 +95,23 @@ def content_parse(domain, url):
 	obj = obj.find_next("td")
 	db_record.update({"date": obj.get_text().strip()})
 
-	obj =bs0bj.find("tr",{"class":"head"}).find_next("tr")
+	obj = bs0bj.find("tr",{"class":"head"}).find_next("tr")
 	db_record.update({"post": str(obj)})
 
-	# 자바스크립트 첨부파일 파싱 불가
+	obj = bs0bj.find("table",{"class":"board_append"})
+	obj = obj.find("tr").find("td").find_next("td")
+	
+	if obj.get_text().strip() == "등록된 첨부 파일이 없습니다.":
+		db_record.update({"file_is":0})
+		db_record.update({"file_link":"None"})
+	else:
+		obj = obj.find_all("div")
+		db_record.update({"file_is":1})
+		file_list = []
+		file_list.append(domain)
+
+		for i in obj:
+			file_list.append(str(i))
+		db_record.update({"file_link":file_list})
 
 	return db_record

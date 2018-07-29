@@ -99,13 +99,19 @@ def content_parse(domain,url):
 	db_record.update({"author":obj.find("strong").get_text().strip()})
 	obj = bs0bj.find("div",{"class":"board_stance"})
 	db_record.update({"post":str(obj)})
-	'''
-	cnt = 1
-	while obj.find_next("p") is not None:
-		obj = obj.find_next("p")
-		db_record.update({"file_link_" + str(cnt) :\
-							# jsscript;;; href 링크가 없음 
-						 obj.find("a")}).attrs['href']
-		cnt += 1
-	'''
+
+	# 첨부 파일이 없을 경우
+	obj = bs0bj.find_all("p",{"class":"file"})
+	if not obj:
+		db_record.update({"file_is":0})
+		db_record.update({"file_link":"None"})
+	# 첨부 파일이 있을 경우, 리스트 생성
+	else:
+		db_record.update({"file_is":1})
+		file_list = []
+		file_list.append(domain)
+		for i in obj:
+			file_list.append(str(i))
+		db_record.update({"file_link":file_list})
+
 	return db_record
