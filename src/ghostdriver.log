@@ -1,5 +1,93 @@
-[INFO  - 2018-07-29T12:43:41.899Z] GhostDriver - Main - running on port 28240
-[INFO  - 2018-07-29T12:43:45.885Z] Session [086a3670-932d-11e8-8408-9d9bd83ccdea] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2018-07-29T12:43:45.885Z] Session [086a3670-932d-11e8-8408-9d9bd83ccdea] - page.customHeaders:  - {}
-[INFO  - 2018-07-29T12:43:45.885Z] Session [086a3670-932d-11e8-8408-9d9bd83ccdea] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2018-07-29T12:43:45.885Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 086a3670-932d-11e8-8408-9d9bd83ccdea
+[INFO  - 2018-08-02T13:41:09.828Z] GhostDriver - Main - running on port 56711
+[INFO  - 2018-08-02T13:41:13.688Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-08-02T13:41:13.688Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.customHeaders:  - {}
+[INFO  - 2018-08-02T13:41:13.688Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-08-02T13:41:13.688Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: b91dbdf0-9659-11e8-9ca1-45b9022ee56a
+[ERROR - 2018-08-02T13:41:15.944Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:15.944Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:24.867Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:24.868Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=1:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=1:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:33.963Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:33.964Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=2:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=2:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:42.818Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:42.818Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=3:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=3:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:51.798Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:41:51.799Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=4:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=4:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:01.111Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:01.112Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=5:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=5:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:10.630Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:10.630Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=6:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=6:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:19.090Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:19.090Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=7:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=7:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:27.946Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:27.946Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=8:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=8:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:37.137Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:37.138Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=9:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=9:254)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:41.416Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-02T13:42:41.416Z] Session [b91dbdf0-9659-11e8-9ca1-45b9022ee56a] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=bamboo&page=10:226)
+  onload (http://pknu.in/bbs/board.php?bo_table=bamboo&page=10:254)
+
+  phantomjs://platform/console++.js:263 in error

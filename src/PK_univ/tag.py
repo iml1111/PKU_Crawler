@@ -46,6 +46,9 @@ def tagging(URL, title):
 	elif url[1] == "ce":
 		tag_ce(url, title, tag_list)
 
+	elif url[1] == "pknu":
+		tag_list.append("대나무숲")
+
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
 
@@ -270,6 +273,19 @@ def tag_public(url, title, tag_list):
 	or (title.find("VR") != -1 \
 	and alpha(title, title.find("VR")) == 2):
 		tag_list.append("IT&컴퓨터")
+
+	if title.find("행긱") != -1 or title.find("행긱") != -1\
+	title.find("기숙사") != -1 or title.find("긱사") != -1\
+	title.find("행복기숙사") != -1 or title.find("세종관") != -1\
+	title.find("세종1관") != -1 or title.find("세종2관") != -1:
+		tag_list.append("기숙사")
+
+	if title.find("원룸") != -1 or title.find("자취") != -1\
+	title.find("자췻방") != -1 or title.find("하숙") != -1:
+		tag_list.append("자취&하숙")
+
+	if title.find("학식") != -1:
+		tag_list.append("학식")
 
 
 #### 부경대 컴퓨터공학과 홈페이지

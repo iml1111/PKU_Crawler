@@ -4,4 +4,4 @@ PK_job_start = "2018-05-01"
 
 PK_ce_start = "2018-02-01"
 
-PK_pknu_start "2018-07-03KST16:26:20"
+PK_pknu_start = "2018-07-03KST16:26:20"
