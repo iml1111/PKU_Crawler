@@ -10,7 +10,7 @@ import time
 
 #for Debug
 target = "PK_univ"
-URL = List[17:] 
+URL = List[18:] 
 
 if __name__ == '__main__':
 	print("HI! I'M IML.")

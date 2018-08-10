@@ -37,14 +37,14 @@ List = (\
 	#부경대 컴공 대학원 16부터
 	{'url':"http://ce.pknu.ac.kr/03_uni/04_uni.php",\
 	'info':"PK_ce_graduate"},\
-	# 부경대 커뮤니티(pknu.in) 대나무숲 17부터
+	# 부경대 커뮤니티(pknu.in) 17부터
 	{'url':"http://pknu.in/bbs/board.php?bo_table=bamboo",\
 	'info':"PK_pknu_bamboo"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=moim",\
+	'info':"PK_pknu_moim"},\
 	)
 
 '''
-	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=7&p_boardcode=PK10000007",\
-	'info':"PK_main_journal"},\
-	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=34&p_boardcode=PK10000034",\
-	'info':"PK_main_reference"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=twinkle",\
+	'info':"PK_pknu_twinkle"},\
 '''

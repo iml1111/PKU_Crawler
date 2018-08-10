@@ -47,7 +47,8 @@ def tagging(URL, title):
 		tag_ce(url, title, tag_list)
 
 	elif url[1] == "pknu":
-		tag_list.append("대나무숲")
+		tag_pknu(url, title, tag_list)
+		
 
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
@@ -186,14 +187,14 @@ def tag_public(url, title, tag_list):
 	or title.find("채용") != -1\
 	or title.find("공채") != -1 or title.find("일자리") != -1\
 	and (url[1] != 'job' or url[2] == 'competition')\
-	or title.find("직원") != -1:
+	or title.find("직원") != -1 or title.find("취업") != -1:
 		tag_list.append("취업")
 
 	if title.find("창업") != -1:
 		tag_list.append("창업")
 
 	if title.find("장학") != -1:
-		tag_list.append("장학생")
+		tag_list.append("장학")
 
 	if title.find("행사") != -1 or title.find("참가") != -1\
 		or title.find("쇼") != -1 or title.find("프로그램") != -1\
@@ -226,7 +227,10 @@ def tag_public(url, title, tag_list):
 	if title.find("모집") != -1:
 		tag_list.append("모집")
 
-	if title.find("스포츠") != -1 or title.find("레포츠") != -1:
+	if title.find("스포츠") != -1 or title.find("레포츠") != -1\
+	or title.find("축구") != -1 or title.find("운동") != -1\
+	or title.find("농구") != -1 or title.find("야구") != -1\
+	or title.find("족구") != -1  or title.find("수영") != -1:
 		tag_list.append("스포츠")
 
 	if title.find("조교") != -1 and title.find("보조교사") == -1:
@@ -271,16 +275,17 @@ def tag_public(url, title, tag_list):
 	or title.find("알고리즘") != -1\
 	or title.find("S/W") != -1\
 	or (title.find("VR") != -1 \
+	or (title.find("프로그래머") != -1 \
 	and alpha(title, title.find("VR")) == 2):
 		tag_list.append("IT&컴퓨터")
 
-	if title.find("행긱") != -1 or title.find("행긱") != -1\
-	title.find("기숙사") != -1 or title.find("긱사") != -1\
-	title.find("행복기숙사") != -1 or title.find("세종관") != -1\
+	if title.find("행긱") != -1 or title.find("행긱") != -1 or\
+	title.find("기숙사") != -1 or title.find("긱사") != -1 or\
+	title.find("행복기숙사") != -1 or title.find("세종관") != -1 or\
 	title.find("세종1관") != -1 or title.find("세종2관") != -1:
 		tag_list.append("기숙사")
 
-	if title.find("원룸") != -1 or title.find("자취") != -1\
+	if title.find("원룸") != -1 or title.find("자취") != -1 or\
 	title.find("자췻방") != -1 or title.find("하숙") != -1:
 		tag_list.append("자취&하숙")
 
@@ -325,3 +330,14 @@ def tag_ce(url, title, tag_list):
 
 	if title.find("교육") != -1:
 		tag_list.append("교육")
+
+
+# 부경대 커뮤니티(pknu.in)
+def tag_pknu(url, title, tag_list):
+	tag_list.append("pknu.in")
+
+	if url[2] == 'bamboo':
+		tag_list.append("대나무숲")
+
+	if url[2] == 'moim':
+		tag_list.append("스터디&모임")
