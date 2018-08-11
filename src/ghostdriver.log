@@ -1,29 +1,37 @@
-[INFO  - 2018-08-10T15:31:23.859Z] GhostDriver - Main - running on port 7466
-[INFO  - 2018-08-10T15:31:27.868Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2018-08-10T15:31:27.868Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.customHeaders:  - {}
-[INFO  - 2018-08-10T15:31:27.868Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2018-08-10T15:31:27.868Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 72c7ab40-9cb2-11e8-b258-49561e76b734
-[ERROR - 2018-08-10T15:31:30.164Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+[INFO  - 2018-08-11T05:34:19.439Z] GhostDriver - Main - running on port 17086
+[INFO  - 2018-08-11T05:34:23.466Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-08-11T05:34:23.466Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.customHeaders:  - {}
+[INFO  - 2018-08-11T05:34:23.466Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-08-11T05:34:23.466Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 342f7c20-9d28-11e8-9aca-3762951995d9
+[ERROR - 2018-08-11T05:34:25.578Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2018-08-10T15:31:30.164Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - stack:
-  onloadevent (http://pknu.in/bbs/board.php?bo_table=moim:225)
-  onload (http://pknu.in/bbs/board.php?bo_table=moim:253)
+[ERROR - 2018-08-11T05:34:25.579Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=lost:224)
+  onload (http://pknu.in/bbs/board.php?bo_table=lost:252)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2018-08-10T15:31:32.059Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+[ERROR - 2018-08-11T05:34:30.504Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2018-08-10T15:31:32.059Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - stack:
-  onloadevent (http://pknu.in/bbs/board.php?bo_table=moim&page=1:225)
-  onload (http://pknu.in/bbs/board.php?bo_table=moim&page=1:253)
+[ERROR - 2018-08-11T05:34:30.504Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=lost&page=1:224)
+  onload (http://pknu.in/bbs/board.php?bo_table=lost&page=1:252)
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2018-08-10T15:31:34.575Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+[ERROR - 2018-08-11T05:34:34.313Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
 
   phantomjs://platform/console++.js:263 in error
-[ERROR - 2018-08-10T15:31:34.575Z] Session [72c7ab40-9cb2-11e8-b258-49561e76b734] - page.onError - stack:
-  onloadevent (http://pknu.in/bbs/board.php?bo_table=moim&page=2:225)
-  onload (http://pknu.in/bbs/board.php?bo_table=moim&page=2:253)
+[ERROR - 2018-08-11T05:34:34.314Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=lost&page=2:224)
+  onload (http://pknu.in/bbs/board.php?bo_table=lost&page=2:252)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-11T05:34:35.317Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById("loading").style')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-11T05:34:35.317Z] Session [342f7c20-9d28-11e8-9aca-3762951995d9] - page.onError - stack:
+  onloadevent (http://pknu.in/bbs/board.php?bo_table=lost&page=3:224)
+  onload (http://pknu.in/bbs/board.php?bo_table=lost&page=3:252)
 
   phantomjs://platform/console++.js:263 in error

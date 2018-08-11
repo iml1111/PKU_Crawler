@@ -84,7 +84,7 @@ def tag_main(url,title,tag_list):
 	# 부경대 메인 알바
 	if url[2] == "parttimejob" or title.find("알바") != -1 \
 	or title.find("아르바이트") != -1:
-		tag_list.append("알바")
+		tag_list.append("알바&구인")
 
 	# 부경대 메인 봉사
 	elif url[2] == "volunteer":
@@ -275,8 +275,8 @@ def tag_public(url, title, tag_list):
 	or title.find("알고리즘") != -1\
 	or title.find("S/W") != -1\
 	or (title.find("VR") != -1 \
-	or (title.find("프로그래머") != -1 \
-	and alpha(title, title.find("VR")) == 2):
+	and alpha(title, title.find("VR")) == 2)\
+	or title.find("프로그래머") != -1 :
 		tag_list.append("IT&컴퓨터")
 
 	if title.find("행긱") != -1 or title.find("행긱") != -1 or\
@@ -291,6 +291,10 @@ def tag_public(url, title, tag_list):
 
 	if title.find("학식") != -1:
 		tag_list.append("학식")
+
+	if title.find("알바") != -1 \
+	or title.find("아르바이트") != -1:
+		tag_list.append("알바&구인")
 
 
 #### 부경대 컴퓨터공학과 홈페이지
@@ -341,3 +345,9 @@ def tag_pknu(url, title, tag_list):
 
 	if url[2] == 'moim':
 		tag_list.append("스터디&모임")
+
+	if url[2] == 'public':
+		tag_list.append("홍보")
+
+	if url[2] == 'lost':
+		tag_list.append("분실물")

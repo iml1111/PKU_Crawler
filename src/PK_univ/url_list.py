@@ -42,6 +42,10 @@ List = (\
 	'info':"PK_pknu_bamboo"},\
 	{'url':"http://pknu.in/bbs/board.php?bo_table=moim",\
 	'info':"PK_pknu_moim"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=public",\
+	'info':"PK_pknu_public"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=lost",\
+	'info':"PK_pknu_lost"},\
 	)
 
 '''

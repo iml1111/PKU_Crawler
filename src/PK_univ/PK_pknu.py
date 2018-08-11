@@ -65,7 +65,10 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 		db_record.update(content_parse(domain, obj.attrs["href"]))
 
 		# 태그 생성
-		db_record.update(tagging(URL, db_record['title']))
+		if "class" in db_record.keys():
+			db_record.update(tagging(URL, db_record['title'] + db_record['class']))
+		else:
+			db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
@@ -93,6 +96,12 @@ def content_parse(domain, url):
 
 	obj = bs0bj.find("h1",{"itemprop":"headline"})
 	db_record.update({"title": obj.get_text().strip()})
+
+	if bs0bj.find("span",{"class":"hidden-xs"}) != None:
+		obj = bs0bj.find("span",{"class":"hidden-xs"})
+		if obj.get_text().strip() != "":
+			db_record.update({"class":obj.get_text().strip()})
+
 	obj = bs0bj.find("span",{"itemprop":"datePublished"})
 	db_record.update({"date": obj.attrs["content"]})
 	obj = bs0bj.find("div",{"itemprop":"description"})
