@@ -95,23 +95,20 @@ def content_parse(domain,url):
 	db_record.update({"title":obj.get_text().strip()})
 	obj = obj.find_next("p")
 	db_record.update({"date":obj.find("strong").get_text().strip()})
-	obj = obj.find_next("p")
-	db_record.update({"author":obj.find("strong").get_text().strip()})
 	obj = bs0bj.find("div",{"class":"board_stance"})
-	db_record.update({"post":str(obj)})
-
-	# 첨부 파일이 없을 경우
-	obj = bs0bj.find_all("p",{"class":"file"})
-	if not obj:
-		db_record.update({"file_is":0})
-		db_record.update({"file_link":"None"})
-	# 첨부 파일이 있을 경우, 리스트 생성
-	else:
-		db_record.update({"file_is":1})
-		file_list = []
-		file_list.append(domain)
-		for i in obj:
-			file_list.append(str(i))
-		db_record.update({"file_link":file_list})
+	db_record.update({"post":post_wash(str(obj.get_text().strip()))})
 
 	return db_record
+
+def post_wash(text):
+	data = ""
+	for i in range(len(text)):
+		if text[i] == '\n' or text[i] == '\r':
+			continue
+		if text[i] == '\\' and (text[i+1] == 'n' or text[i+1] == 'r'):
+			continue
+		elif (text[i] == 'n' or text[i] == 'r') or text[i-1] == '\\':
+			continue
+		data = data + text[i]
+
+	return data

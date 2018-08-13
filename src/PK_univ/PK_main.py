@@ -69,8 +69,6 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 			db_record.update(content_parse(domain, domain + obj))
 
 			obj = post.find("td",{"class":"author"})
-			db_record.update({"author":obj.get_text().strip()})
-
 			# 태그 생성
 			db_record.update(tagging(URL, db_record['title']))
 
@@ -100,29 +98,24 @@ def content_parse(domain, url):
 	db_record.update({"title":obj.findNext('td').get_text().strip()})
 	obj = bs0bj.find(text="작성일")
 	db_record.update({"date":obj.findNext('td').get_text().strip()})
-	obj = bs0bj.find(text ="이메일")
-	if obj != None:
-		db_record.update({"email":obj.findNext('td').get_text().strip()})
-	obj = bs0bj.find("img",{'alt':"첨부 파일"})
-	# 첨부 파일이 없을 경우
-	if not obj:
-		db_record.update({"file_is":0})
-		db_record.update({"file_link":"None"})
-	# 첨부 파일이 있을 경우, 리스트 생성
-	else:
-		db_record.update({"file_is":1})
-		file_list = []
-		file_list.append(domain)
-		obj2 = bs0bj.find("ul",{'class':"reset"})
-		for i in obj2.children:
-			file_list.append(str(i))
-		db_record.update({"file_link":file_list})
 
 	obj = bs0bj.find("div",{'class':"bbs-body"})
-	db_record.update({"post":str(obj)})
+	db_record.update({"post":post_wash(str(obj.get_text().strip()))})
 
 	return db_record
 
 
+def post_wash(text):
+	data = ""
+	for i in range(len(text)):
+		if text[i] == '\n' or text[i] == '\r':
+			continue
+		if text[i] == '\\' and (text[i+1] == 'n' or text[i+1] == 'r'):
+			continue
+		elif (text[i] == 'n' or text[i] == 'r') or text[i-1] == '\\':
+			continue
+		data = data + text[i]
+
+	return data
 
 	

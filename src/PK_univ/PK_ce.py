@@ -90,28 +90,23 @@ def content_parse(domain, url):
 
 	obj = bs0bj.find("tr",{"class":"head"}).find("td",{"class":"first txt-l"})
 	db_record.update({"title": obj.get_text().strip()})
-	obj = obj.find_next("td")
-	db_record.update({"author": obj.get_text().strip()})
-	obj = obj.find_next("td")
+	obj = obj.find_next("td").find_next("td")
 	db_record.update({"date": obj.get_text().strip()})
 
 	obj = bs0bj.find("tr",{"class":"head"}).find_next("tr")
-	db_record.update({"post": str(obj)})
-
-	obj = bs0bj.find("table",{"class":"board_append"})
-	obj = obj.find("tr").find("td").find_next("td")
-	
-	if obj.get_text().strip() == "등록된 첨부 파일이 없습니다.":
-		db_record.update({"file_is":0})
-		db_record.update({"file_link":"None"})
-	else:
-		obj = obj.find_all("div")
-		db_record.update({"file_is":1})
-		file_list = []
-		file_list.append(domain)
-
-		for i in obj:
-			file_list.append(str(i))
-		db_record.update({"file_link":file_list})
+	db_record.update({"post": post_wash(str(obj.get_text().strip()))})
 
 	return db_record
+
+def post_wash(text):
+	data = ""
+	for i in range(len(text)):
+		if text[i] == '\n' or text[i] == '\r':
+			continue
+		if text[i] == '\\' and (text[i+1] == 'n' or text[i+1] == 'r'):
+			continue
+		elif (text[i] == 'n' or text[i] == 'r') or text[i-1] == '\\':
+			continue
+		data = data + text[i]
+
+	return data
