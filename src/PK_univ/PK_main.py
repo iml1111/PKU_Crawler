@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from db_manager import db_manage
 from PK_global import PK_main_start
 from tag import tagging
+from post_wash import post_wash
 
 start_datetime = PK_main_start
 recent_date = None
@@ -104,18 +105,4 @@ def content_parse(domain, url):
 
 	return db_record
 
-
-def post_wash(text):
-	data = ""
-	for i in range(len(text)):
-		if text[i] == '\n' or text[i] == '\r':
-			continue
-		if text[i] == '\\' and (text[i+1] == 'n' or text[i+1] == 'r'):
-			continue
-		elif (text[i] == 'n' or text[i] == 'r') or text[i-1] == '\\':
-			continue
-		data = data + text[i]
-
-	return data
-
-	
+		
