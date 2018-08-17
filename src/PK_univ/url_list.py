@@ -46,6 +46,9 @@ List = (\
 	'info':"PK_pknu_public"},\
 	{'url':"http://pknu.in/bbs/board.php?bo_table=lost",\
 	'info':"PK_pknu_lost"},\
+	# 부경 투데이 21부터
+	{'url':"https://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=6&p_boardcode=PK10000006",\
+	'info':"PK_today"},\
 	)
 
 '''
