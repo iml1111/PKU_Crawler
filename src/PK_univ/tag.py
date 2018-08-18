@@ -48,6 +48,22 @@ def tagging(URL, title):
 
 	elif url[1] == "pknu":
 		tag_pknu(url, title, tag_list)
+
+	elif url[1] == "today":
+		tag_list.append("부경투데이")
+
+	elif url[1] == "pknulogin":
+		if url[2] == 'market':
+			tag_list.append("거래")
+
+	elif url[1] == "dorm":
+		tag_list.append("기숙사")
+		if url[2] == 'notice':
+			tag_list.append("공지")
+
+	if url[2] == "lecture":
+		tag_list.append("강의평가")
+		tag_list.append(title.split(" ")[0])
 		
 
 	###### 공용 부가 태그 ######
@@ -196,6 +212,9 @@ def tag_public(url, title, tag_list):
 	if title.find("장학") != -1:
 		tag_list.append("장학")
 
+	if title.find("경영학") != -1:
+		tag_list.append("경영학")
+
 	if title.find("행사") != -1 or title.find("참가") != -1\
 		or title.find("쇼") != -1 or title.find("프로그램") != -1\
 		or title.find("대회") != -1\
@@ -230,7 +249,8 @@ def tag_public(url, title, tag_list):
 	if title.find("스포츠") != -1 or title.find("레포츠") != -1\
 	or title.find("축구") != -1 or title.find("운동") != -1\
 	or title.find("농구") != -1 or title.find("야구") != -1\
-	or title.find("족구") != -1  or title.find("수영") != -1:
+	or title.find("족구") != -1  or title.find("수영") != -1\
+	or title.find("테니스") != -1 or title.find("배드민턴") != -1:
 		tag_list.append("스포츠")
 
 	if title.find("조교") != -1 and title.find("보조교사") == -1:
@@ -282,7 +302,8 @@ def tag_public(url, title, tag_list):
 	if title.find("행긱") != -1 or title.find("행긱") != -1 or\
 	title.find("기숙사") != -1 or title.find("긱사") != -1 or\
 	title.find("행복기숙사") != -1 or title.find("세종관") != -1 or\
-	title.find("세종1관") != -1 or title.find("세종2관") != -1:
+	title.find("세종1관") != -1 or title.find("세종2관") != -1 or\
+	title.find("생활관") != -1:
 		tag_list.append("기숙사")
 
 	if title.find("원룸") != -1 or title.find("자취") != -1 or\
@@ -343,11 +364,20 @@ def tag_pknu(url, title, tag_list):
 	if url[2] == 'bamboo':
 		tag_list.append("대나무숲")
 
-	if url[2] == 'moim':
+	elif url[2] == 'moim':
 		tag_list.append("스터디&모임")
 
-	if url[2] == 'public':
+	elif url[2] == 'public':
 		tag_list.append("홍보")
 
-	if url[2] == 'lost':
+	elif url[2] == 'lost':
 		tag_list.append("분실물")
+
+	elif url[2] == 'free':
+		tag_list.append("기타")
+
+	elif url[2] == 'twinkle':
+		tag_list.append("반짝정원")
+
+	elif url[2] == 'kin':
+		tag_list.append("부경지식인")

@@ -16,7 +16,9 @@ List = (\
 	'info':"PK_main_lost"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=22&p_boardcode=PK10000022",\
 	'info':"PK_main_volunteer"},\
-	# 부경대 취업정보 8부터
+	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=21&p_boardcode=PK10000021",\
+	'info':"PK_main_car"},\
+	# 부경대 취업정보 9부터
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2342",\
 	'info':"PK_job_normal"},\
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2343",\
@@ -27,17 +29,17 @@ List = (\
 	'info':"PK_job_competition"},\
 	{'url':"http://cms.pknu.ac.kr/pknujob/view.do?no=2388",\
 	'info':"PK_job_education"},\
-	# 부경대 컴퓨터공학과 13부터
+	# 부경대 컴퓨터공학과 14부터
 	{'url':"http://ce.pknu.ac.kr/05_community/01_community.php",\
 	'info':"PK_ce_notice"},\
 	{'url':"http://ce.pknu.ac.kr/05_community/03_community.php",\
 	'info':"PK_ce_jobinfo"},\
 	{'url':"http://ce.pknu.ac.kr/04_samsung/06_samsung.php",\
 	'info':"PK_ce_samsungsw"},\
-	#부경대 컴공 대학원 16부터
+	#부경대 컴공 대학원 17부터
 	{'url':"http://ce.pknu.ac.kr/03_uni/04_uni.php",\
 	'info':"PK_ce_graduate"},\
-	# 부경대 커뮤니티(pknu.in) 17부터
+	# 부경대 커뮤니티(pknu.in) 18부터
 	{'url':"http://pknu.in/bbs/board.php?bo_table=bamboo",\
 	'info':"PK_pknu_bamboo"},\
 	{'url':"http://pknu.in/bbs/board.php?bo_table=moim",\
@@ -46,12 +48,25 @@ List = (\
 	'info':"PK_pknu_public"},\
 	{'url':"http://pknu.in/bbs/board.php?bo_table=lost",\
 	'info':"PK_pknu_lost"},\
-	# 부경 투데이 21부터
+	{'url':"http://pknu.in/bbs/board.php?bo_table=free",\
+	'info':"PK_pknu_free"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=twinkle",\
+	'info':"PK_pknu_twinkle"},\
+	{'url':"http://pknu.in/bbs/board.php?bo_table=kin",\
+	'info':"PK_pknu_kin"},\
+	# 부경 투데이 25부터
 	{'url':"https://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=6&p_boardcode=PK10000006",\
 	'info':"PK_today"},\
+	# pknu.in 강의평가 26부터
+	{'url':"http://pknu.in/bbs/board.php?bo_table=lecture",\
+	'info':"PK_pknulec_lecture"},\
+	# pknu.in 중고장터 27
+	{'url':"http://pknu.in/bbs/board.php?bo_table=market_flea",\
+	'info':"PK_pknulogin_market"},\
+	# 부경대 학생생활관 28부터
+	{'url':"http://dormitory.pknu.ac.kr/03_notice/notice02.php",\
+	'info':"PK_dorm_notice"},\
 	)
 
 '''
-	{'url':"http://pknu.in/bbs/board.php?bo_table=twinkle",\
-	'info':"PK_pknu_twinkle"},\
 '''

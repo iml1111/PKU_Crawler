@@ -6,6 +6,9 @@ import PK_job
 import PK_ce
 import PK_pknu
 import PK_today
+import PK_pknu_lecture
+import PK_pknulogin
+import PK_dorm
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
@@ -26,3 +29,9 @@ def Crawling(target, URL, is_first):
 			PK_pknu.parsing(driver, URL, is_first)
 		elif select == 'today':
 			PK_today.parsing(driver, URL, is_first)
+		elif select == 'pknulec' and is_first == True:
+			PK_pknu_lecture.parsing(driver, URL, is_first)
+		elif select == 'pknulogin':
+			PK_pknulogin.parsing(driver, URL, is_first)
+		elif select == 'dorm':
+			PK_dorm.parsing(driver, URL, is_first)
