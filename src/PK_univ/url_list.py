@@ -56,7 +56,7 @@ List = (\
 	'info':"PK_pknu_kin"},\
 	# 부경 투데이 25부터
 	{'url':"https://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=6&p_boardcode=PK10000006",\
-	'info':"PK_today"},\
+	'info':"PK_today_today"},\
 	# pknu.in 강의평가 26부터
 	{'url':"http://pknu.in/bbs/board.php?bo_table=lecture",\
 	'info':"PK_pknulec_lecture"},\
@@ -66,6 +66,14 @@ List = (\
 	# 부경대 학생생활관 28부터
 	{'url':"http://dormitory.pknu.ac.kr/03_notice/notice02.php",\
 	'info':"PK_dorm_notice"},\
+	# 부경대 창업지원단 29부터
+	{'url':"http://startup.pknu.ac.kr/html2015/06comm/01.do",\
+	'info':"PK_start_notice"},\
+	{'url':"http://startup.pknu.ac.kr/html2015/06comm/06.do",\
+	'info':"PK_start_free"},\
+	# 부경대 디시인사이드 31부터
+	{'url':"http://gall.dcinside.com/board/lists/?id=pknu",\
+	'info':"PK_dcinside_free"},\
 	)
 
 '''

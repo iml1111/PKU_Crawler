@@ -6,11 +6,12 @@
 import iml_global
 from url_list import List
 from crawl_select import Crawling
+import PK_etc
 import time
 
 #for Debug
 target = "PK_univ"
-URL = List[28:29] 
+URL = List[31:32] 
 
 if __name__ == '__main__':
 	print("HI! I'M IML.")
@@ -21,10 +22,14 @@ if __name__ == '__main__':
 	
 # Start mode
 	if mode == "1":
+
 		for url in URL:
 			print('< URL parsing Start! >\n' + str(url['url']))
 			Crawling(target, url, True)
 			print('-------------------------------------')
+
+		PK_etc.crawling()
+
 # Renewal mode
 	else:
 		while(True):

@@ -61,6 +61,17 @@ def tagging(URL, title):
 		if url[2] == 'notice':
 			tag_list.append("공지")
 
+	elif url[1] == 'start':
+		tag_list.append("창업지원단")
+		if url[2] == 'notice':
+			tag_list.append("공지")
+		elif url[2] == 'free':
+			tag_list.append("기타")
+
+	elif url[1] == "dcinside":
+		tag_list.append("디시인사이드")
+		tag_list.append("기타")
+
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
 		tag_list.append(title.split(" ")[0])

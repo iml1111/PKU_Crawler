@@ -1,32 +1,31 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
-from PK_global import PK_dorm_start
+from PK_global import PK_start_start
 from tag import tagging
 from post_wash import post_wash
 
-start_datetime = PK_dorm_start
+start_datetime = PK_start_start
 recent_date = None
 
-
 def parsing(driver, URL, is_first):
-	page = 0
-	print("start_date:" + PK_dorm_start)
+	page = 1
+	print("start_date:" + start_datetime)
 	while True:
-		global recent_date # renewal date를 위한 갱신
+		global recent_date
 
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
 		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
-		bs0bj = bs0bj.find("table",{"class":"board_list"}).find("tbody")
+		bs0bj = bs0bj.find("table",{"class":"list_tbl tbl_w_type_2"}).find("tbody")
 
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
-			db_docs = list_parse(bs0bj, URL, page)
-			
+			db_docs = list_parse(driver, bs0bj, URL, page)
+
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
 			lastet_datetime = db_manage("get_recent", URL['info'])
-			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
+			db_docs = list_parse(driver, bs0bj, URL, page, lastet_datetime)
 
 		print('\n# this post of page is \n' + str(len(db_docs)))
 
@@ -41,9 +40,9 @@ def parsing(driver, URL, is_first):
 		else:
 			db_manage("add", URL['info'], db_docs)
 			page += 1
-			driver.get(URL['url'] + "?page=" + str(page - 1))
-			print(URL['url'] + "?page=" + str(page - 1))
-			
+			driver.get(URL['url'] + "?page_no=" + str(page - 1))
+			print(URL['url'] + "?page_no=" + str(page - 1))
+
 	# 최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None:
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
@@ -53,57 +52,56 @@ def parsing(driver, URL, is_first):
 		db_manage("view")
 
 
-def list_parse(bs0bj, URL, page, latest_datetime = None):
+def list_parse(driver, bs0bj, URL, page, latest_datetime = None):
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
 
-	#게시글 파싱 및 크롤링
 	for post in post_list:
-		# 1 페이지에서만 필수 공지글을 가져오고 그다음부턴 스킵
-		if page > 0 and post.find("td").get_text().strip() == "":
-			continue
-
 		db_record = {}
-		db_record.update(content_parse(domain, domain \
-							+ post.find("a").attrs["href"]))
+
+		obj = post.find("a").attrs['href']
+		if URL['info'] == 'PK_start_notice':
+			url = "http://startup.pknu.ac.kr/html2015/06comm/01_view.do?idx=" + obj.split("#")[1]
+		elif URL['info'] == 'PK_start_free':
+			url = "http://startup.pknu.ac.kr/html2015/06comm/06_view.do?idx=" + obj.split("#")[1]
+		db_record.update(content_parse(url))
+		
 		# 태그 생성
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
-		if (db_record['date'] >= start_datetime or \
-					post.find("td").get_text().strip() == "")\
-											and \
-											latest_datetime == None:
+		if db_record['date'] >= start_datetime and \
+								latest_datetime == None:
 			db_docs.append(db_record)
 		#renewal 파싱이고 해당 글의 갱신 조건이 맞을 때
 		elif latest_datetime != None and \
 				db_record['date'] >= latest_datetime['recent_date'] and \
 					db_record['title'] != latest_datetime['title']:
-			db_docs.append(db_record)
+			db_docs.append(db_record)		
 		else:
 			break
 
 	return db_docs
 
 
-def content_parse(domain, url):
+def content_parse(url):
 	html = URLparser(url)
 	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	db_record = {}
 	db_record.update({"url":url})
 
-	bs0bj = bs0bj.find("table",{"class":"board_view"})
-	obj = bs0bj.find("thead").get_text().strip()
+	obj = bs0bj.find("span",{"class":"view_subj_core"})
+	obj = obj.get_text().strip()
 	db_record.update({"title":obj})
 
-	obj = bs0bj.find("tbody").find("tr").find("td").find_next("td").find_next("td")
-	obj = obj.get_text().strip().split(" ")[2]
+	obj = bs0bj.find("span",{"class":"view_subj_date"})
+	obj = obj.get_text().strip()
 	db_record.update({"date":obj})
 
-	obj = bs0bj.find("tbody").find("td",{"class":"tdc"})
+	obj = bs0bj.find("div",{"class":"view_txt_container"})
 	obj = obj.get_text().strip()
 	db_record.update({"post":post_wash(str(obj))})
-
+	
 	return db_record

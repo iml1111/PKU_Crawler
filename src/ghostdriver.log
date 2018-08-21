@@ -1,5 +1,30 @@
-[INFO  - 2018-08-18T09:54:06.202Z] GhostDriver - Main - running on port 38187
-[INFO  - 2018-08-18T09:54:10.176Z] Session [a77b3da0-a2cc-11e8-884e-e9a54a11c01a] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2018-08-18T09:54:10.176Z] Session [a77b3da0-a2cc-11e8-884e-e9a54a11c01a] - page.customHeaders:  - {}
-[INFO  - 2018-08-18T09:54:10.176Z] Session [a77b3da0-a2cc-11e8-884e-e9a54a11c01a] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2018-08-18T09:54:10.176Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: a77b3da0-a2cc-11e8-884e-e9a54a11c01a
+[INFO  - 2018-08-21T06:01:14.416Z] GhostDriver - Main - running on port 29066
+[INFO  - 2018-08-21T06:01:18.630Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-08-21T06:01:18.630Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.customHeaders:  - {}
+[INFO  - 2018-08-21T06:01:18.630Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-08-21T06:01:18.630Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 9f07c200-a507-11e8-806f-1f9408317e33
+[ERROR - 2018-08-21T06:01:22.292Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - msg: ReferenceError: Can't find variable: cur_page_url
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-21T06:01:22.292Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - stack:
+  global code (http://nstatic.dcinside.com/ad/2017/passback/170614_google_250250.html:7)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-21T06:02:44.366Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - msg: ReferenceError: Can't find variable: cur_page_url
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-21T06:02:44.366Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - stack:
+  global code (http://nstatic.dcinside.com/ad/2017/passback/170614_google_250250.html:7)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-21T06:04:04.208Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - msg: ReferenceError: Can't find variable: cur_page_url
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-08-21T06:04:04.209Z] Session [9f07c200-a507-11e8-806f-1f9408317e33] - page.onError - stack:
+  global code (http://nstatic.dcinside.com/ad/2017/passback/170614_google_250250.html:7)
+
+  phantomjs://platform/console++.js:263 in error
+[INFO  - 2018-08-21T06:06:14.316Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2018-08-21T06:11:14.323Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2018-08-21T06:16:14.331Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2018-08-21T06:21:14.331Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW

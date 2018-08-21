@@ -68,8 +68,6 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 			
 			# 게시물 내에 정보 파싱
 			db_record.update(content_parse(domain, domain + obj))
-
-			obj = post.find("td",{"class":"author"})
 			# 태그 생성
 			db_record.update(tagging(URL, db_record['title']))
 
