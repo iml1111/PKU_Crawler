@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from url_parser import URLdriving
+from url_parser import URLdriving, URLparser
 # 부경대 공지사항 목록
 import PK_main 
 import PK_job
@@ -14,7 +14,11 @@ import PK_dcinside
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
-	driver = URLdriving(URL)
+
+	if  select == 'dcinside':
+		driver = URLparser(URL['url'])
+	else:
+		driver = URLdriving(URL)
 
 	if target == 'PK_univ':
 		print('-------------------------------------')

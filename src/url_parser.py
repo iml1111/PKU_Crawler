@@ -7,7 +7,13 @@ class AppURLopener(FancyURLopener):
 def URLdriving(URL):
 	print('Driver : PhantomJS')
 	driver = webdriver.PhantomJS("./phantomjs-2.1.1-windows/bin/phantomjs")
-	driver.get(URL['url'])
+	
+	try:
+		driver.get(URL['url'])
+	except:
+		print("Connection Error")
+		driver.get(URL['url'])
+
 	driver.implicitly_wait(1)
 
 	return driver
@@ -15,9 +21,8 @@ def URLdriving(URL):
 def URLparser(URL):
 	try:
 		html = AppURLopener().open(URL)
-	except HTTPError as e:
-		print(e)
-		print("[*] HTTP ERROR!")
-		sys.exit(1)	
+	except:
+		print("Connection Error")
+		html = AppURLopener().open(URL)
 
 	return html

@@ -16,7 +16,7 @@ def parsing(driver, URL, is_first):
 		global recent_date
 
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
-		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
+		bs0bj = BeautifulSoup(driver.read(), "lxml")
 		bs0bj = bs0bj.find("tbody",{"class":"list_tbody"})
 
 		# first 크롤링일 경우 그냥 진행
@@ -41,7 +41,7 @@ def parsing(driver, URL, is_first):
 		else:
 			db_manage("add", URL['info'], db_docs)
 			page += 1
-			driver.get(URL['url'] + "&page=" + str(page - 1))
+			driver = URLparser(URL['url'] + "&page=" + str(page - 1))
 			time.sleep(3)
 			print(URL['url'] + "&page=" + str(page - 1))
 
@@ -86,8 +86,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 
 def content_parse(url):
 	html = URLparser(url)
-	time.sleep(1)
-	bs0bj = BeautifulSoup(html.read(), "html.parser")
+	bs0bj = BeautifulSoup(html.read(), "lxml")
 	db_record = {}
 	db_record.update({"url":url})
 
