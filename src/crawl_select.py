@@ -11,11 +11,13 @@ import PK_pknulogin
 import PK_dorm
 import PK_start
 import PK_dcinside
+import PK_coop
+import PK_sh
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 
-	if  select == 'dcinside':
+	if  select == 'dcinside' or  select == 'coop' or  select == 'sh':
 		driver = URLparser(URL['url'])
 	else:
 		driver = URLdriving(URL)
@@ -45,3 +47,7 @@ def Crawling(target, URL, is_first):
 			PK_start.parsing(driver, URL, is_first)
 		elif select == 'dcinside':
 			PK_dcinside.parsing(driver, URL, is_first)
+		elif select == 'coop':
+			PK_coop.parsing(driver, URL, is_first)
+		elif select == 'sh':
+			PK_sh.parsing(driver, URL, is_first)

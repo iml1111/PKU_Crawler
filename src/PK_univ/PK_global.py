@@ -13,3 +13,7 @@ PK_dorm_start = "2018-05-01"
 PK_start_start = "2017-05-09 18:23:43"
 
 PK_dcinside_start = "2018-08-01 12:19:39"
+
+PK_coop_start = "2018-01-01 12:19:39"
+
+PK_sh_start = "2018-01-01 12:19"

@@ -72,6 +72,14 @@ def tagging(URL, title):
 		tag_list.append("디시인사이드")
 		tag_list.append("기타")
 
+	elif url[1] == "coop":
+		tag_list.append("생협소식")
+		tag_list.append("공지")
+
+	elif url[1] == "sh":
+		tag_list.append("산학협력단")
+		tag_list.append("공지")
+
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
 		tag_list.append(title.split(" ")[0])
@@ -333,7 +341,6 @@ def tag_public(url, title, tag_list):
 def tag_ce(url, title, tag_list):
 	tag_list.append("컴퓨터공학과")
 	tag_list.append("IT&컴퓨터")
-	tag_list.append("이공계")
 
 	## 부경대 컴공 공지 
 	if url[2] == "notice":
