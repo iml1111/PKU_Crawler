@@ -18,6 +18,10 @@ def Search(text):
 	for element in text_list:
 
 		for col in db.collection_names():
+
+			if col == "recent_date":
+				continue
+
 			coll_list = list(db[col].find({"title":{"$regex":element}}))
 			coll_list.extend(list(db[col].find({"tag":{"$elemMatch": {"$regex":element }}})))
 			coll_list.extend(list( db[col].find({"post":{"$regex":element}})))
@@ -27,13 +31,17 @@ def Search(text):
 					for j in result:
 						if j['_id'] == i['_id']:
 							j['count'] += 1
+							j['element'].add(element)
+
 				else:
 					obj_list.append(i['_id'])
 					i.update({"count":1})
+					i.update({"element":set([element])})
 					result.append(i)
-					if result[-1]['title'].find(element) != -1 or\
-					element in result[-1]['tag']:
-						result[-1]['count'] += 1
+
+	for i in result:
+		i['count'] += len(i['element'])*3
+
 
 	result = sorted(result, key=itemgetter('count'),reverse = True)
 	return result

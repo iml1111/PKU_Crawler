@@ -214,7 +214,7 @@ def tag_public(url, title, tag_list):
 		tag_list.append("영어")
 
 	if title.find("HSK") != -1 or title.find("JPT") != -1\
-	or title.find("JLPT") != -1\
+	or title.find("JLPT") != -1 or title.find("일본어") != -1 or title.find("중국어") != -1\
 	or (title.find("회화") != -1 and title.find("영어회화") == -1):
 		tag_list.append("외국어")
 
@@ -248,16 +248,20 @@ def tag_public(url, title, tag_list):
 
 	if title.find("특강") != -1:
 		tag_list.append("특강")
+		tag_list.append("교육&설명회")
 
 	if title.find("수강") != -1 or title.find("K-MOOC") != -1\
 	or title.find("강좌") != -1:
 		tag_list.append("수강")
+		tag_list.append("교육&설명회")
 
 	if title.find("세미나") != -1:
 		tag_list.append("세미나")
+		tag_list.append("교육&설명회")
 
 	if title.find("멘토") != -1 or title.find("멘티") != -1:
 		tag_list.append("멘토링")
+		tag_list.append("교육&설명회")
 
 	if title.find("인문") != -1:
 		tag_list.append("인문학")
@@ -377,7 +381,7 @@ def tag_ce(url, title, tag_list):
 
 # 부경대 커뮤니티(pknu.in)
 def tag_pknu(url, title, tag_list):
-	tag_list.append("pknu.in")
+	tag_list.append("부경인")
 
 	if url[2] == 'bamboo':
 		tag_list.append("대나무숲")

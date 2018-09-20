@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from db_manager import db_manage
 from tag import tagging
 
-recent_date = None
 
 def parsing(driver, URL, is_first):
 	page = 1
@@ -67,9 +66,8 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 
 		print(db_record['title'])
 
-		# first 파싱이고 해당 글의 시간 조건이 맞을 때
-		if db_record['date'] >= start_datetime and \
-							lastet_datetime == None:
+		# first 파싱일 때
+		if lastet_datetime == None:
 			db_docs.append(db_record)
 		#renewal 파싱이고 해당 글의 갱신 조건이 맞을 때
 		elif lastet_datetime != None and\
@@ -77,5 +75,6 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 			db_docs.append(db_record)
 		else:
 			break
+
 
 	return db_docs

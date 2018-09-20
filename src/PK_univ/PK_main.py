@@ -99,7 +99,7 @@ def content_parse(domain, url):
 	db_record.update({"date":obj.findNext('td').get_text().strip()})
 
 	obj = bs0bj.find("div",{'class':"bbs-body"})
-	db_record.update({"post":post_wash(str(obj.get_text().strip()))})
+	db_record.update({"post":str(obj.get_text().strip())})
 
 	return db_record
 

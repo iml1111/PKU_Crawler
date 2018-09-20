@@ -17,7 +17,7 @@ def parsing(driver, URL, is_first):
 
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
 		bs0bj = BeautifulSoup(driver.read(), "lxml")
-		bs0bj = bs0bj.find("tbody",{"class":"list_tbody"})
+		bs0bj = bs0bj.find("table",{"class":"gall_list"}).find("tbody")
 
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
@@ -59,7 +59,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
 
-	for post in post_list[1:]:
+	for post in post_list[10:]:
 		db_record = {}
 		
 		obj = post.find("a").attrs['href']
@@ -70,7 +70,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
 		if ( db_record['date'] >= start_datetime or  \
-				post.find("td",{"class":"t_notice"}).get_text() == "공지" ) and \
+				post.find("em",{"class":"icon_img icon_notice"}) != None ) and \
 					latest_datetime == None:
 			db_docs.append(db_record)
 		#renewal 파싱이고 해당 글의 갱신 조건이 맞을 때
@@ -86,18 +86,26 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 
 def content_parse(url):
 	html = URLparser(url)
-	bs0bj = BeautifulSoup(html.read(), "lxml")
+
+	try:
+		bs0bj = BeautifulSoup(html.read(), "lxml")
+	except:
+		print("connect error")
+		bs0bj = BeautifulSoup(html.read(), "lxml")
+
+	bs0bj = bs0bj.find("div",{"class":"view_content_wrap"})
 	db_record = {}
 	db_record.update({"url":url})
 
-	obj = bs0bj.find("dl",{"class":"wt_subject"}).find("dd").get_text().strip()
+	obj = bs0bj.find("h3",{"class":"title ub-word"}).get_text().strip()
 	db_record.update({"title":obj})
 
-	obj = bs0bj.find("div",{"class":"w_top_right"}).find("li")
-	obj = obj.get_text().strip()
+	obj = bs0bj.find("div", {"class":"gall_writer ub-writer"}).find("div",{"class":"fl"})
+	obj = bs0bj.find("span",{"class":"gall_date"}).attrs['title']
+	obj = obj.strip()
 	db_record.update({"date":obj})
 
-	obj = bs0bj.find("div",{"class":"s_write"})
+	obj = bs0bj.find("div",{"class":"gallview_contents"})
 	obj = obj.get_text().strip()
 	db_record.update({"post":post_wash(obj)})
 
