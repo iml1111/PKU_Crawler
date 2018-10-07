@@ -5,7 +5,7 @@ import datetime
 t = datetime.datetime.now()
 
 #확장 필요
-db_name = 'uni_board'
+db_name = 'pookle'
 ip = 'localhost'
 port = 27017
 
