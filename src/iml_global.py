@@ -1,9 +1,6 @@
 import sys
 import os
 
-Author = "IML"
-Description = "Code to store global variables and paths"
-
 sys.path.insert(0,'C:\\Users\\IML\\Desktop\\PKU_Crawler\\src')
 sys.path.insert(0,'C:\\Users\\IML\\Desktop\\PKU_Crawler\\src\\PK_univ')
 
