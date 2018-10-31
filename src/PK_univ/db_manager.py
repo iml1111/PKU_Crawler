@@ -32,6 +32,9 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 					break
 
 			if cnt == 0:
+				# i 변수가 하나의 게시물
+				# 여기다가 게시물의 원하는 칼럼 붙여넣으면 됨 
+				# ex) i.update({"추가할 항목":"추가할 값"})
 				coll.insert(i)
 			else:
 				continue
