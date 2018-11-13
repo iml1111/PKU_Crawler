@@ -3,6 +3,7 @@ import os
 import datetime
 # 디버깅을 위한 코드, 추후에 전체 수정 필요
 t = datetime.datetime.now()
+filter_list = ["페미","냄져","한남"]
 
 #확장 필요
 db_name = 'pookle'
@@ -27,9 +28,11 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 				if i['title'] == j['title']:
 					cnt = 1
 					break
-				if i['title'].find("페미") != -1:
-					cnt = 1
-					break
+
+				for i in filter_list:
+					if i[title].find(i) == -1:
+						cnt = 1
+						break
 
 			if cnt == 0:
 				# i 변수가 하나의 게시물

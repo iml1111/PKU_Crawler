@@ -2,7 +2,11 @@ from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 from tag import tagging
+import datetime
 
+dt = datetime.datetime.now()
+today = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
+recent_date = None
 
 def parsing(driver, URL, is_first):
 	page = 1
@@ -61,7 +65,8 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 		print(title)
 		db_record.update({"url":obj.find("a").attrs["href"]})
 		db_record.update({"title":title})
-		db_record.update({"post":"해당 페이지에 로그인 후 확인하실 수 있습니다."})
+		db_record.update({"post":0})
+		db_record.update({"date":today})
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['title'])

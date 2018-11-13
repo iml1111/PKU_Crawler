@@ -218,6 +218,10 @@ def tag_public(url, title, tag_list):
 	or (title.find("회화") != -1 and title.find("영어회화") == -1):
 		tag_list.append("외국어")
 
+	if (title.find("책") != -1 or title.find("개론") != -1) and ("거래" in tag_list):
+		tag_list.append("책")
+
+
 	if title.find("취업") != -1 or title.find("인턴") != -1\
 	or title.find("채용") != -1\
 	or title.find("공채") != -1 or title.find("일자리") != -1\

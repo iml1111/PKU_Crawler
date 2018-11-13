@@ -33,8 +33,12 @@ def parsing(driver, URL, is_first):
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:
-			recent_date = {"name":URL['info'], "title":db_docs[0]['title']\
-							, "recent_date":db_docs[0]['date']}
+			recent_doc = db_docs[0]
+			for doc in db_docs[1:]:
+				if(recent_doc['date'] <= doc['date']):
+					recent_doc = doc
+			recent_date = {"name":URL['info'], "title":recent_doc['title']\
+							, "recent_date":recent_doc['date']}
 
 		if len(db_docs) == 0:
 			break
@@ -83,7 +87,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 					db_record['title'] != latest_datetime['title']:
 			db_docs.append(db_record)
 		else:
-			break
+			continue
 
 	return db_docs
 

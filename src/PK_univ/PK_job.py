@@ -30,12 +30,11 @@ def parsing(driver, URL, is_first):
 
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
-		if page == 1 and len(db_docs) >= 1: # 최근 날짜 갱신 
+		if page == 1 and len(db_docs) >= 1: 
 			recent_date = {"name":URL['info'],"title":db_docs[0]['title']\
 											,"recent_date":db_docs[0]['date']}
-	
 		#해당 페이지에서 글을 가져온 경우 db에 add
-		if len(db_docs) == 0:
+		if len(db_docs) == 0: 
 			break
 		else:
 			db_manage("add", URL['info'], db_docs)

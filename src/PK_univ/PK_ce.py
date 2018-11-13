@@ -29,9 +29,13 @@ def parsing(driver, URL, is_first):
 		print('# this post of page is ' + str(len(db_docs)))
 
 		# 최근 날짜 갱신 
-		if page == 1 and len(db_docs) >= 1: 
-			recent_date = {"name":URL['info'],"title":db_docs[0]['title']\
-											,"recent_date":db_docs[0]['date']}
+		if page == 1 and len(db_docs) >= 1:
+			recent_doc = db_docs[0]
+			for doc in db_docs[1:]:
+				if(recent_doc['date'] <= doc['date']):
+					recent_doc = doc
+			recent_date = {"name":URL['info'], "title":recent_doc['title']\
+							, "recent_date":recent_doc['date']}
 			
 		if len(db_docs) == 0:
 			break
@@ -79,7 +83,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 					db_record['title'] != latest_datetime['title']:
 			db_docs.append(db_record)
 		else:
-			break
+			continue
 
 	return db_docs
 
