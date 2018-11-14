@@ -1,8 +1,7 @@
 from db_manager import db_manage
-import datetime
+from recent_date import get_today
 
-dt = datetime.datetime.now()
-today = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
+today = get_today()
 
 list = [
 

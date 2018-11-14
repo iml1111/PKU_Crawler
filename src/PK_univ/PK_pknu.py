@@ -4,6 +4,7 @@ from db_manager import db_manage
 from PK_global import PK_pknu_start
 from tag import tagging
 from post_wash import post_wash
+from recent_date import get_recent_date
 
 start_datetime = PK_pknu_start
 recent_date = None
@@ -31,12 +32,7 @@ def parsing(driver, URL, is_first):
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:
-			recent_doc = db_docs[0]
-			for doc in db_docs[1:]:
-				if(recent_doc['date'] <= doc['date']):
-					recent_doc = doc
-			recent_date = {"name":URL['info'], "title":recent_doc['title']\
-							, "recent_date":recent_doc['date']}
+			recent_date = get_recent_date(URL, db_docs)
 
 		if len(db_docs) == 0:
 			break
@@ -50,9 +46,6 @@ def parsing(driver, URL, is_first):
 	if recent_date != None:
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
 	recent_date = None
-
-	if is_first == True:
-		db_manage("view")
 
 
 def list_parse(bs0bj, URL, page, lastet_datetime = None):

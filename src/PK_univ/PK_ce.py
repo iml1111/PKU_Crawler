@@ -27,30 +27,20 @@ def parsing(driver, URL, is_first):
 			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
 
 		print('# this post of page is ' + str(len(db_docs)))
-
 		# 최근 날짜 갱신 
 		if page == 1 and len(db_docs) >= 1:
-			recent_doc = db_docs[0]
-			for doc in db_docs[1:]:
-				if(recent_doc['date'] <= doc['date']):
-					recent_doc = doc
-			recent_date = {"name":URL['info'], "title":recent_doc['title']\
-							, "recent_date":recent_doc['date']}
-			
+			recent_date = {"name":URL['info'], "title":db_docs[0]['title']\
+									, "recent_date":db_docs[0]['date']}
 		if len(db_docs) == 0:
 			break
 		else:
 			db_manage("add", URL['info'], db_docs)
 			page += 1
 			driver.get(URL['url'] + "?page=" + str(page - 1))
-
 	#최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None: 
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
 	recent_date = None
-
-	if is_first == True:
-		db_manage("view")
 
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):

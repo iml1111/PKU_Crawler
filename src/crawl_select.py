@@ -14,10 +14,12 @@ import PK_dcinside
 import PK_coop
 import PK_sh
 
+filterlist = ['dcinside','coop','sh']
+
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 
-	if  select == 'dcinside' or  select == 'coop' or  select == 'sh':
+	if  select in filterlist:
 		driver = URLparser(URL['url'])
 	else:
 		driver = URLdriving(URL)

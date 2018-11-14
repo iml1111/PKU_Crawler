@@ -2,11 +2,11 @@ from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 from tag import tagging
-import datetime
+from recent_date import get_recent_date
+from recent_date import get_today
 
-dt = datetime.datetime.now()
-today = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
 recent_date = None
+today = get_today()
 
 def parsing(driver, URL, is_first):
 	page = 1
@@ -29,7 +29,7 @@ def parsing(driver, URL, is_first):
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:
-			recent_date = {"name":URL['info'], "title":db_docs[0]['title']}
+			recent_date = get_recent_date(URL,db_docs)
 
 		if len(db_docs) == 0:
 			break
@@ -43,9 +43,6 @@ def parsing(driver, URL, is_first):
 	if recent_date != None:
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
 	recent_date = None
-
-	if is_first == True:
-		db_manage("view")
 
 
 def list_parse(bs0bj, URL, page, lastet_datetime = None):
@@ -76,7 +73,7 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 			db_docs.append(db_record)
 		#renewal 파싱이고 해당 글의 갱신 조건이 맞을 때
 		elif lastet_datetime != None and\
-				db_record['title'] != lastet_datetime['title']:
+						db_record['title'] != lastet_datetime['title']:
 			db_docs.append(db_record)
 		else:
 			break

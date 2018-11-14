@@ -2,30 +2,44 @@ from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
 from tag import tagging
-import datetime
+from recent_date import get_today
+from recent_date import get_recent_date
 
-dt = datetime.datetime.now()
-today = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
+today = get_today()
+recent_date = None
 
 def parsing(driver, URL, is_first):
 	page = 1
 	while True:
+		global recent_date #renwal date을 위한 갱신
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
 		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
 		bs0bj = bs0bj.find("ul",{"class":"list-body"})
 
-		# renewal 크롤링 없음
-		db_docs = list_parse(bs0bj, URL, page)
+		# first 크롤링일 경우 or renewal 크롤링일 경우
+		if is_first == True: 
+			db_docs = list_parse(bs0bj, URL, page)
+		else:
+			latest_datetime = db_manage("get_recent", URL['info'])
+			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
+
 		print('\n# this post of page is \n' + str(len(db_docs)))
+
+		# 최근 날짜 갱신 
+		if page == 1 and len(db_docs) >= 1:
+			recent_date = get_recent_date(URL, db_docs)
+
 		if len(db_docs) == 0:
 			break
 		else:
 			db_manage("add", URL['info'], db_docs)
 			page += 1
 			driver.get(URL['url'] + "&page=" + str(page - 1))
-			print(URL['url'] + "&page=" + str(page - 1))
 
-	db_manage("view")
+	#최근 날짜가 갱신되었다면 db에도 갱신
+	if recent_date != None: 
+		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
+	recent_date = None
 
 
 def list_parse(bs0bj, URL, page):

@@ -45,7 +45,6 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 
 	elif mode == "renewal_date":
 		if is_first == True:
-			# 몽고쉘에서는 나왔음!
 			db['recent_date'].insert(doc)
 		else:
 			db['recent_date'].update({"name":coll_name}, doc)
