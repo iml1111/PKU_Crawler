@@ -80,6 +80,25 @@ List = (\
 	#부경대 산학협력단 33부터
 	{'url':"http://sh.pknu.ac.kr/sh/bbs/bbs/board.php?bo_table=b14",\
 	'info':"PK_sh_notice"},\
+	# 학과 홈페이지
+	# 글로벌자율전공학부 34부터
+	{'url':"http://cms.pknu.ac.kr/duem/view.do?no=1024",\
+	'info':"PK_duem_notice"},\
+	{'url':"http://cms.pknu.ac.kr/duem/view.do?no=1025",\
+	'info':"PK_duem_free"},\
+	{'url':"http://cms.pknu.ac.kr/duem/view.do?no=1020",\
+	'info':"PK_duem_jobinfo"},\
+	# 국어국문학과 37부터
+	{'url':"http://cms.pknu.ac.kr/korean/view.do?no=1355",\
+	'info':"PK_korean_notice"},\
+	{'url':"http://cms.pknu.ac.kr/korean/view.do?no=1353",\
+	'info':"PK_korean_jobinfo"},\
+	#일어일문학과 39부터
+	{'url':"http://cms.pknu.ac.kr/japanese/view.do?no=10535",\
+	'info':"PK_japan_notice"},\
+	{'url':"http://cms.pknu.ac.kr/japanese/view.do?no=10537",\
+	'info':"PK_japan_jobinfo"},\
+
 	)
 
 '''

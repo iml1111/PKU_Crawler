@@ -59,11 +59,12 @@ def list_parse(bs0bj, URL, page, lastet_datetime = None):
 		if post.find("span",{"class":"wr-icon wr-notice"}) != None:
 			continue
 		db_record = {}
+		try:
+			obj = post.find("div",{"class":"wr-subject"}).find("a").attrs["href"]
+		except Exception as e:
+			return db_docs
 
-		obj = post.find("div",{"class":"wr-subject"}).find("a")
-		db_record.update(content_parse(domain, obj.attrs["href"]))
-
-		# 태그 생성
+		db_record.update(content_parse(domain, obj))
 		if "class" in db_record.keys():
 			db_record.update(tagging(URL, db_record['title'] + db_record['class']))
 		else:

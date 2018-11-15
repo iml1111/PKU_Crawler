@@ -57,7 +57,10 @@ def list_parse(driver, bs0bj, URL, page, latest_datetime = None):
 	for post in post_list:
 		db_record = {}
 
-		obj = post.find("a").attrs['href']
+		try:
+			obj = post.find("a").attrs['href']
+		except Exception as e:
+			return db_docs
 		if URL['info'] == 'PK_start_notice':
 			url = "http://startup.pknu.ac.kr/html2015/06comm/01_view.do?idx=" + obj.split("#")[1]
 		elif URL['info'] == 'PK_start_free':

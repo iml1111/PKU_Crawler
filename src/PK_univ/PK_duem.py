@@ -1,22 +1,33 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
-from PK_global import PK_sh_start
+import PK_global
 from tag import tagging
 from recent_date import get_recent_date
+from post_wash import post_wash
 
-start_datetime = PK_sh_start
+start_datetime = None
 recent_date = None
 
 def parsing(driver, URL, is_first):
+
+	target = URL['info'].split('_')[1]
+	global start_datetime
+	if target == 'duem':
+		start_datetime = PK_global.PK_duem_start
+	elif target == 'korean':
+		start_datetime = PK_global.PK_korean_start
+	elif target == 'japan':
+		start_datetime = PK_global.PK_japan_start
+
 	page = 1
 	print("start_date:" + start_datetime)
 	while True:
 		global recent_date
 
-		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
+		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
-		bs0bj = bs0bj.find("div",{"class":"tbl_head01 tbl_wrap"}).find('tbody')
+		bs0bj = bs0bj.find("div",{"id":"board_box"}).find("ul",{"id":"board_list"})
 
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
@@ -26,20 +37,21 @@ def parsing(driver, URL, is_first):
 		else:
 			lastet_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
-
-		print('\n# this post of page is \n' + str(len(db_docs)))
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:
 			recent_date = get_recent_date(URL, db_docs)
 
 		if len(db_docs) == 0:
+			print("addOK : 0")
 			break
 		else:
-			db_manage("add", URL['info'], db_docs)
+			addok = db_manage("add", URL['info'], db_docs)
+			print("addOK : " + str(addok))
+			if addok == 0:
+				break
 			page += 1
-			driver = URLparser(URL['url'] + "&page=" + str(page - 1))
-			print(URL['url'] + "&page=" + str(page - 1))
+			driver = URLparser(URL['url'] + "&pageIndex=" + str(page))
 
 	# 최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None:
@@ -49,18 +61,17 @@ def parsing(driver, URL, is_first):
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):
 	db_docs = []
-	post_list = bs0bj.findAll("tr")
+	post_list = bs0bj.findAll("li")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
 
-	for post in post_list:
+	for post in  post_list:
 		db_record = {}
-		
 		try:
 			obj = post.find("a").attrs['href']
 		except Exception as e:
 			return db_docs
-		db_record.update(content_parse(obj))
-		# 태그 생성
+		
+		db_record.update(content_parse(domain + obj))
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
@@ -78,21 +89,20 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 
 	return db_docs
 
-
 def content_parse(url):
-	html = URLparser(url)
-	bs0bj = BeautifulSoup(html.read(), "html.parser").find("article",{"id":"bo_v"})
 	db_record = {}
+	html = URLparser(url)
+	bs0bj = BeautifulSoup(html.read(), "html.parser")
+	bs0bj = bs0bj.find("div",{"id":"board_view"})
 	db_record.update({"url":url})
 
-	obj = bs0bj.find("h1",{"id":"bo_v_title"}).get_text().strip()
+	obj = bs0bj.find("h3").get_text().strip()
 	db_record.update({"title":obj})
 
-	obj = bs0bj.find("section",{"id":"bo_v_info"}).find("strong").find_next("strong")
-	obj = "20" + obj.get_text().strip()
+	obj = bs0bj.find("p",{"class":"writer"}).find("strong").get_text().strip()
 	db_record.update({"date":obj})
 
-	obj = bs0bj.find("div",{"id":"bo_v_con"}).get_text().strip()
-	db_record.update({"post":obj})
+	obj = bs0bj.find("div",{"class":"board_stance"}).get_text().strip()
+	db_record.update({"post":post_wash(obj)})
 
 	return db_record

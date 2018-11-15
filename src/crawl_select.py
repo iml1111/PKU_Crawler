@@ -13,8 +13,9 @@ import PK_start
 import PK_dcinside
 import PK_coop
 import PK_sh
+import PK_duem
 
-filterlist = ['dcinside','coop','sh']
+filterlist = ['dcinside','coop','sh','duem','korean','japan']
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
@@ -26,7 +27,7 @@ def Crawling(target, URL, is_first):
 
 	if target == 'PK_univ':
 		print('-------------------------------------')
-		print('Selected <' + select +'>')
+		print('Selected <' + URL['info'] +'>')
 		print('-------------------------------------')
 		
 		if select == 'main':
@@ -53,3 +54,5 @@ def Crawling(target, URL, is_first):
 			PK_coop.parsing(driver, URL, is_first)
 		elif select == 'sh':
 			PK_sh.parsing(driver, URL, is_first)
+		elif select == 'duem' or select == 'korean' or select == 'japan':
+			PK_duem.parsing(driver, URL, is_first)

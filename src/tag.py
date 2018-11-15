@@ -58,8 +58,6 @@ def tagging(URL, title):
 
 	elif url[1] == "dorm":
 		tag_list.append("기숙사")
-		if url[2] == 'notice':
-			tag_list.append("공지")
 
 	elif url[1] == 'start':
 		tag_list.append("창업지원단")
@@ -80,10 +78,24 @@ def tagging(URL, title):
 		tag_list.append("산학협력단")
 		tag_list.append("공지")
 
+	elif url[1] == "duem":
+		tag_list.append("글로벌자율전공학부")
+
+	elif url[1] == "korean":
+		tag_list.append("국어국문학과")
+
+	elif url[1] == "japan":
+		tag_list.append("일어일문학부")
+
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
 		tag_list.append(title.split(" ")[0])
-		
+	elif url[2] == "notice":
+		tag_list.append("공지")
+	elif url[2] == 'free':
+		tag_list.append("기타")
+	elif url[2] == 'jobinfo':
+		tag_job(url, title, tag_list)
 
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
@@ -182,6 +194,9 @@ def tag_job(url, title, tag_list):
 	if title.find("인턴") != -1:
 		tag_list.append("인턴")
 
+	if title.find("신입") != -1:
+		tag_list.append("신입")
+
 	if title.find("정규") != -1:
 		tag_list.append("정규직")
 				
@@ -250,7 +265,7 @@ def tag_public(url, title, tag_list):
 	if title.find("공모") != -1 or title.find("대외활동") != -1:
 		tag_list.append("공모전&대외활동")
 
-	if title.find("특강") != -1:
+	if title.find("특강") != -1 or   title.find("설명회") != -1:
 		tag_list.append("특강")
 		tag_list.append("교육&설명회")
 
@@ -343,6 +358,12 @@ def tag_public(url, title, tag_list):
 	if title.find("알바") != -1 \
 	or title.find("아르바이트") != -1:
 		tag_list.append("알바&구인")
+
+	if title.find("워크숍") != -1 \
+	or title.find("스터디") != -1 \
+	or title.find("모임") != -1:
+		tag_list.append("스터디&모임")
+
 
 
 #### 부경대 컴퓨터공학과 홈페이지

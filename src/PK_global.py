@@ -17,3 +17,9 @@ PK_dcinside_start = "2018-11-12 12:19:39"
 PK_coop_start = "2018-09-01 12:19:39"
 
 PK_sh_start = "2018-09-01 12:19"
+
+PK_duem_start = "2015-11-01"
+
+PK_korean_start = "2018-09-06"
+
+PK_japan_start = "2018-10-10"

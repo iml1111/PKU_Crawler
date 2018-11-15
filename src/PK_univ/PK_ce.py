@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from db_manager import db_manage
 from PK_global import PK_ce_start
 from tag import tagging
+from recent_date import get_recent_date
 from post_wash import post_wash
 
 start_datetime = PK_ce_start
@@ -29,8 +30,8 @@ def parsing(driver, URL, is_first):
 		print('# this post of page is ' + str(len(db_docs)))
 		# 최근 날짜 갱신 
 		if page == 1 and len(db_docs) >= 1:
-			recent_date = {"name":URL['info'], "title":db_docs[0]['title']\
-									, "recent_date":db_docs[0]['date']}
+			recent_date = get_recent_date(URL, db_docs)
+
 		if len(db_docs) == 0:
 			break
 		else:
@@ -53,11 +54,12 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 		if  page > 1 and post.find("td",{"class":"first"}).get_text() == "공지":
 			continue
 		db_record = {}
+		try:
+			obj = post.find("td",{"class":"txt-l"}).find("a").attrs['href']
+		except Exception as e:
+			return db_docs
 
-		obj = post.find("td",{"class":"txt-l"}).find("a")
-		db_record.update(content_parse(domain, domain + obj.attrs["href"]))
-
-		# 태그 생성
+		db_record.update(content_parse(domain, domain + obj))
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])

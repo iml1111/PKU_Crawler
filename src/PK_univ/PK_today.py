@@ -56,8 +56,10 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 	# 게시글 파싱 및 크롤링
 	for post in post_list:
 		db_record = {}
-		obj = post.find("a").attrs['href']
-		# 게시물 내에 정보 파싱
+		try:
+			obj = post.find("a").attrs['href']
+		except Exception as e:
+			return db_docs
 		db_record.update(content_parse(domain, domain + obj))
 		# 태그 생성
 		db_record.update(tagging(URL, db_record['title']))

@@ -19,7 +19,7 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 	
 
 	if mode == "add":
-		print('DB_insert the [ ' + coll_name + ' ] with dedups.')
+		addok = 0
 		for i in doc:
 			cnt = 0
 			for j in coll.find({'title':i['title']},\
@@ -38,9 +38,12 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 				# i 변수가 하나의 게시물
 				# 여기다가 추가하고픈 게시물의 원하는 칼럼 붙여넣으면 됨 
 				# ex) i.update({"추가할 항목":"추가할 값"})
+				addok += 1
 				coll.insert(i)
 			else:
 				continue
+
+		return addok
 
 
 	elif mode == "renewal_date":

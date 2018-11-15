@@ -62,8 +62,11 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 			continue
 
 		db_record = {}
-		db_record.update(content_parse(domain, domain \
-							+ post.find("a").attrs["href"]))
+		try:
+			obj = post.find("a").attrs['href']
+		except Exception as e:
+			return db_docs
+		db_record.update(content_parse(domain, domain + obj))
 		# 태그 생성
 		db_record.update(tagging(URL, db_record['title']))
 

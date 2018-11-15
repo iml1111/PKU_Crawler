@@ -55,12 +55,19 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 
 	# 게시글 파싱 및 크롤링
 	for post in post_list:
-		obj = post.find("td",{"class":"no"})
+		try:
+			obj = post.find("td",{"class":"no"})
+		except Exception as e:
+			return db_docs
+
 		if obj != None and obj.get_text() != "":
 			db_record = {}
 			
-			obj = post.find("td",{"class":"title"})
-			obj = obj.find("a").attrs['href']
+			try:
+				obj = post.find("td",{"class":"title"})
+				obj = obj.find("a").attrs['href']
+			except Exception as e:
+				return db_docs
 			
 			# 게시물 내에 정보 파싱
 			db_record.update(content_parse(domain, domain + obj))

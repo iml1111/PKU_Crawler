@@ -3,7 +3,7 @@ def get_recent_date(URL, db_docs):
 
 	if len(db_docs) >= 2:
 		for doc in db_docs[1:]:
-			if recent_doc['date'] <= doc['date']:
+			if recent_doc['date'] < doc['date']:
 				recent_doc = doc
 
 	recent_date = {"name":URL['info'], "title":recent_doc['title']\

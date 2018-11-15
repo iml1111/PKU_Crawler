@@ -57,10 +57,13 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 		# 필수 공지글인 경우 스킵
 		if post.find('span').find('img') is not None:
 			continue
-			
-		obj = post.find("a")
 		db_record = {}
-		db_record.update(content_parse(domain, domain + obj.attrs["href"]))
+		try:
+			obj = post.find("a").attrs['href']
+		except Exception as e:
+			return db_docs
+		
+		db_record.update(content_parse(domain, domain + obj))
 
 		# 태그 생성
 		db_record.update(tagging(URL, db_record['title']))
