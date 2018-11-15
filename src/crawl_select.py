@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from url_parser import URLdriving, URLparser
 # 부경대 공지사항 목록
 import PK_main 
-import PK_job
 import PK_ce
 import PK_pknu
 import PK_today
@@ -15,15 +14,16 @@ import PK_coop
 import PK_sh
 import PK_duem
 
-filterlist = ['dcinside','coop','sh','duem','korean','japan']
+filterlist = ['main','today']
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 
-	if  select in filterlist:
-		driver = URLparser(URL['url'])
-	else:
+	if select in filterlist:
 		driver = URLdriving(URL)
+	else:
+		driver = URLparser(URL['url'])
+		
 
 	if target == 'PK_univ':
 		print('-------------------------------------')
@@ -32,8 +32,6 @@ def Crawling(target, URL, is_first):
 		
 		if select == 'main':
 			PK_main.parsing(driver, URL, is_first)
-		elif select == 'job':
-			PK_job.parsing(driver, URL, is_first)
 		elif select == 'ce':
 			PK_ce.parsing(driver, URL, is_first)
 		elif select == 'pknu':
@@ -54,5 +52,6 @@ def Crawling(target, URL, is_first):
 			PK_coop.parsing(driver, URL, is_first)
 		elif select == 'sh':
 			PK_sh.parsing(driver, URL, is_first)
-		elif select == 'duem' or select == 'korean' or select == 'japan':
+		elif select == 'duem' or select == 'korean' or select == 'japan'\
+		or select == 'job':
 			PK_duem.parsing(driver, URL, is_first)

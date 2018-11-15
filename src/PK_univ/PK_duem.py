@@ -19,6 +19,8 @@ def parsing(driver, URL, is_first):
 		start_datetime = PK_global.PK_korean_start
 	elif target == 'japan':
 		start_datetime = PK_global.PK_japan_start
+	elif target == 'job':
+		start_datetime = PK_global.PK_job_start
 
 	page = 1
 	print("start_date:" + start_datetime)

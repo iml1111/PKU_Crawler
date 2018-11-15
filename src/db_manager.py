@@ -27,12 +27,14 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 										sort([("date", -1)]):
 				if i['title'] == j['title']:
 					cnt = 1
+					print("1: ",i['title'])
 					break
 
-				for i in filter_list:
-					if i[title].find(i) == -1:
-						cnt = 1
-						break
+			for j in filter_list:
+				if i["title"].find(j) != -1:
+					print("2: ",i['title'])
+					cnt = 1
+					break
 
 			if cnt == 0:
 				# i 변수가 하나의 게시물

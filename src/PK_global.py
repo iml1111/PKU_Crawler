@@ -6,7 +6,7 @@ PK_ce_start = "2018-09-01"
 
 PK_pknu_start = "2018-09-06 16:26:20"
 
-PK_today_start = "2018-07-06 11:11"
+PK_today_start = "2018-11-06 11:11"
 
 PK_dorm_start = "2018-08-01"
 

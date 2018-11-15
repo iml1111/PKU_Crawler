@@ -15,7 +15,8 @@ def parsing(driver, URL, is_first):
 	while True:
 		global recent_date #renwal date을 위한 갱신
 
-		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
+		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
+		driver.execute_script("goPage(2)")
 		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
 		bs0bj = bs0bj.find("table",{"class":"bbs-list"})
 		 # first 크롤링일 경우 그냥 진행
@@ -26,8 +27,6 @@ def parsing(driver, URL, is_first):
 			latest_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, latest_datetime)
 
-		print('# this post of page is ' + str(len(db_docs)))
-
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1: 
@@ -35,11 +34,15 @@ def parsing(driver, URL, is_first):
 
 		#해당 페이지에서 글을 가져온 경우 db에 add
 		if len(db_docs) == 0: 
+			print("addOK : 0")
 			break
 		else:
-			db_manage("add", URL['info'], db_docs)
+			addok = db_manage("add", URL['info'], db_docs)
+			print("addOK : " + str(addok))
+			if addok == 0:
+				break
 			page += 1
-			driver.execute_script("goPage(" + str(page) + ")")
+			driver.execute_script("goPage(" + str(page+1) + ")")
 
 	#최신 날짜가 갱신되었다면 DB에 넣음
 	if recent_date != None: 
@@ -85,7 +88,7 @@ def list_parse(bs0bj, URL, latest_datetime = None):
 						db_record['title'] != latest_datetime['title']:
 				db_docs.append(db_record)		
 			else:
-				break
+				continue
 
 	return db_docs
 

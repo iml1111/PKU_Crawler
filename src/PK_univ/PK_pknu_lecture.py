@@ -13,7 +13,7 @@ def parsing(driver, URL, is_first):
 	while True:
 		global recent_date #renwal date을 위한 갱신
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
-		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
+		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("ul",{"class":"list-body"})
 
 		# first 크롤링일 경우 or renewal 크롤링일 경우
@@ -23,18 +23,20 @@ def parsing(driver, URL, is_first):
 			latest_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
 
-		print('\n# this post of page is \n' + str(len(db_docs)))
-
 		# 최근 날짜 갱신 
 		if page == 1 and len(db_docs) >= 1:
 			recent_date = get_recent_date(URL, db_docs)
 
 		if len(db_docs) == 0:
+			print("addOK : 0")
 			break
 		else:
-			db_manage("add", URL['info'], db_docs)
+			addok = db_manage("add", URL['info'], db_docs)
+			print("addOK : " + str(addok))
+			if addok == 0:
+				break
 			page += 1
-			driver.get(URL['url'] + "&page=" + str(page - 1))
+			driver = URLparser(URL['url'] + "&page=" + str(page))
 
 	#최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None: 
