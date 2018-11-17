@@ -7,7 +7,6 @@ from recent_date import get_recent_date
 from post_wash import post_wash
 
 start_datetime = None
-recent_date = None
 
 def parsing(driver, URL, is_first):
 
@@ -22,11 +21,12 @@ def parsing(driver, URL, is_first):
 	elif target == 'job':
 		start_datetime = PK_global.PK_job_start
 
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
 	page = 1
 	print("start_date:" + start_datetime)
 	while True:
-		global recent_date
-
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("div",{"id":"board_box"}).find("ul",{"id":"board_list"})
@@ -37,7 +37,6 @@ def parsing(driver, URL, is_first):
 
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			lastet_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장

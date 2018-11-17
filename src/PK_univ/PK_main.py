@@ -6,15 +6,13 @@ from tag import tagging
 from post_wash import post_wash
 from recent_date import get_recent_date
 
-start_datetime = PK_main_start
-recent_date = None
-
 def parsing(driver, URL, is_first):
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
 	page = 1
 	print("start_date:" + PK_main_start)
 	while True:
-		global recent_date #renwal date을 위한 갱신
-
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		driver.execute_script("goPage(2)")
 		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
@@ -24,7 +22,6 @@ def parsing(driver, URL, is_first):
 			db_docs = list_parse(bs0bj, URL)
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			latest_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, latest_datetime)
 
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
@@ -47,11 +44,11 @@ def parsing(driver, URL, is_first):
 	#최신 날짜가 갱신되었다면 DB에 넣음
 	if recent_date != None: 
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
-	# global 변수으로 넣은 최신 날짜 정보 초기화
 	recent_date = None
 
 
 def list_parse(bs0bj, URL, latest_datetime = None):
+	start_datetime = PK_main_start
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]

@@ -5,13 +5,12 @@ from tag import tagging
 from recent_date import get_today
 from recent_date import get_recent_date
 
-today = get_today()
-recent_date = None
-
 def parsing(driver, URL, is_first):
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
 	page = 1
 	while True:
-		global recent_date #renwal date을 위한 갱신
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page - 1))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("ul",{"class":"list-body"})
@@ -20,7 +19,6 @@ def parsing(driver, URL, is_first):
 		if is_first == True: 
 			db_docs = list_parse(bs0bj, URL, page)
 		else:
-			latest_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
 
 		# 최근 날짜 갱신 
@@ -45,6 +43,7 @@ def parsing(driver, URL, is_first):
 
 
 def list_parse(bs0bj, URL, page):
+	today = get_today()
 	db_docs = []
 	post_list = bs0bj.findAll("li")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]

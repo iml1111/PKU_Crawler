@@ -6,15 +6,14 @@ from tag import tagging
 from post_wash import post_wash
 from recent_date import get_recent_date
 
-start_datetime = PK_coop_start
-recent_date = None
 
 def parsing(driver, URL, is_first):
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
 	page = 1
-	print("start_date:" + start_datetime)
-	while True:
-		global recent_date
 
+	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("table").find('tbody')
@@ -22,10 +21,8 @@ def parsing(driver, URL, is_first):
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
 			db_docs = list_parse(bs0bj, URL, page)
-
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			lastet_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
 
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
@@ -51,6 +48,7 @@ def parsing(driver, URL, is_first):
 
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):
+	start_datetime = PK_coop_start
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]

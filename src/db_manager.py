@@ -27,12 +27,12 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 										sort([("date", -1)]):
 				if i['title'] == j['title']:
 					cnt = 1
-					print("1: ",i['title'])
+					print("중복처리: ",i['title'])
 					break
 
 			for j in filter_list:
 				if i["title"].find(j) != -1:
-					print("2: ",i['title'])
+					print("부적합 게시물: ",i['title'])
 					cnt = 1
 					break
 
@@ -57,25 +57,6 @@ def db_manage(mode, coll_name = None, doc = None, is_first = None):
 
 	elif mode == "get_recent":
 		return db['recent_date'].find_one({"name":coll_name})
-
-
-	elif mode == "view":
-		for col in db.collection_names():
-			if db[col].count() != 0:
-				print(col + " count: " + str(db[col].count()))
-
-			if col == 'recent_date':
-				for i in db[col].find():
-					print(i)
-			else:
-				for i in db[col].find({},{'_id':0,'date':1,'title':1}\
-											).sort([("date", -1)]):
-					print(i)
-
-	elif mode == "all_remove":
-		for col in db.collection_names():
-			if db[col].count() != 0:
-				db[col].remove({})
 
 
 def db_access():

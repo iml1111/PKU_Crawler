@@ -6,16 +6,14 @@ from tag import tagging
 from post_wash import post_wash
 from recent_date import get_recent_date
 
-start_datetime = PK_dorm_start
-recent_date = None
-
 
 def parsing(driver, URL, is_first):
-	page = 0
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
+	page = 1
 	print("start_date:" + PK_dorm_start)
 	while True:
-		global recent_date # renewal date를 위한 갱신
-
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("table",{"class":"board_list"}).find("tbody")
@@ -26,7 +24,6 @@ def parsing(driver, URL, is_first):
 			
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			lastet_datetime = db_manage("get_recent", URL['info'])
 			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
 
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
@@ -42,9 +39,8 @@ def parsing(driver, URL, is_first):
 			print("addOK : " + str(addok))
 			if addok == 0:
 				break
-			page += 1
 			driver = URLparser(URL['url'] + "?page=" + str(page))
-			print(URL['url'] + "?page=" + str(page - 1))
+			page += 1
 			
 	# 최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None:
@@ -53,6 +49,7 @@ def parsing(driver, URL, is_first):
 
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):
+	start_datetime = PK_dorm_start
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
@@ -60,7 +57,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 	#게시글 파싱 및 크롤링
 	for post in post_list:
 		# 1 페이지에서만 필수 공지글을 가져오고 그다음부턴 스킵
-		if page > 0 and post.find("td").get_text().strip() == "":
+		if page > 1 and post.find("td").get_text().strip() == "":
 			continue
 
 		db_record = {}

@@ -20,9 +20,17 @@ def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 
 	if select in filterlist:
-		driver = URLdriving(URL)
+		try:
+			driver = URLdriving(URL)
+		except Exception as e:
+			print("Connect Error")
+			return
 	else:
-		driver = URLparser(URL['url'])
+		try:
+			driver = URLparser(URL['url'])
+		except Exception as e:
+			print("Connect Error")
+			return	
 		
 
 	if target == 'PK_univ':

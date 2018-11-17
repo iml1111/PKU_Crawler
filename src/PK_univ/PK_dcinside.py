@@ -7,15 +7,13 @@ from post_wash import post_wash
 import time
 from recent_date import get_recent_date
 
-start_datetime = PK_dcinside_start
-recent_date = None
-
 def parsing(driver, URL, is_first):
+	if is_first == False:
+		latest_datetime = db_manage("get_recent", URL['info'])
+	recent_date = None
 	page = 1
-	print("start_date:" + start_datetime)
-	while True:
-		global recent_date
 
+	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "lxml")
 		bs0bj = bs0bj.find("table",{"class":"gall_list"}).find("tbody")
@@ -42,7 +40,7 @@ def parsing(driver, URL, is_first):
 			print("addOK : " + str(addok))
 			page += 1
 			driver = URLparser(URL['url'] + "&page=" + str(page))
-			time.sleep(3)
+			time.sleep(2)
 
 	# 최근 날짜가 갱신되었다면 db에도 갱신
 	if recent_date != None:
@@ -51,6 +49,7 @@ def parsing(driver, URL, is_first):
 
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):
+	start_datetime = PK_dcinside_start
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
