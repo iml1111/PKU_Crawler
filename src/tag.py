@@ -26,18 +26,10 @@ def tagging(URL, title):
 		if url[2] == "openmarket" or url[2] == "boarding"\
 		or url[2] == "lost":
 			return {"tag":tag_list}
-
 	### 부경대 인재개발원 (공모전 및 교육 제외)
 	elif url[1] == 'job' \
 	and (url[2] != 'competition' and url[2] != 'education'):
 		tag_job(url, title, tag_list)
-
-	#부경대 인재 공모전/대외활동
-	elif url[1] == 'job' and url[2] == 'competition':
-		tag_list.append("공모전&대외활동")
-		if title.find("[스펙업]") != -1:
-			tag_list.append("스펙업")
-
 	#부경대 인재 교육 및 설명회
 	elif url[1] == 'job' and url[2] == 'education':
 		tag_list.append("교육&설명회")
@@ -78,14 +70,37 @@ def tagging(URL, title):
 		tag_list.append("산학협력단")
 		tag_list.append("공지")
 
-	elif url[1] == "duem":
-		tag_list.append("글로벌자율전공학부")
-
-	elif url[1] == "korean":
-		tag_list.append("국어국문학과")
-
-	elif url[1] == "japan":
-		tag_list.append("일어일문학부")
+	elif url[1] == "duem": tag_list.append("글로벌자율전공학부")
+	elif url[1] == "korean": tag_list.append("국어국문학과")
+	elif url[1] == "japan": tag_list.append("일어일문학부")
+	elif url[1] == "history": tag_list.append("사학과")
+	elif url[1] == "economic": tag_list.append("경제학부")
+	elif url[1] == "pknulaw": tag_list.append("법학과")
+	elif url[1] == "pknupa": tag_list.append("행정학과")
+	elif url[1] == "chinese": tag_list.append("중국학과")
+	elif url[1] == "masscom": tag_list.append("신문방송학과")
+	elif url[1] == "politics": tag_list.append("정치외교학과")
+	elif url[1] == "education": tag_list.append("유아교육과")
+	elif url[1] == "visual": tag_list.append("시각디자인학과")
+	elif url[1] == "industrial": tag_list.append("공업디자인학과")
+	elif url[1] == "fashion": tag_list.append("패션디자인학과")
+	elif url[1] == "marinesports": tag_list.append("해양스포츠학과")
+	elif url[1] == "pknudic": tag_list.append("국제통상학부")
+	elif url[1] == "archieng": tag_list.append("건축공학과")
+	elif url[1] == "pknuarchi": tag_list.append("건축학과")
+	elif url[1] == "fire": tag_list.append("소방공학과")
+	elif url[1] == "pknusme": tag_list.append("시스템경영공학부")
+	elif url[1] == "itcae": tag_list.append("IT융합응용공학과")
+	elif url[1] == "imagesys": tag_list.append("융합디스플레이공학과")
+	elif url[1] == "electric": tag_list.append("전기공학과")
+	elif url[1] == "control": tag_list.append("제어계측공학과")
+	elif url[1] == "induseng": tag_list.append("공업화학과")
+	elif url[1] == "env": tag_list.append("환경공학과")
+	elif url[1] == "oceaneng": tag_list.append("해양공학과")
+	elif url[1] == "pkuocean": tag_list.append("해양학과")
+	elif url[1] == "earth": tag_list.append("지구환경과학과")
+	elif url[1] == "envatm": tag_list.append("환경대기과학과")
+	elif url[1] == "msce": tag_list.append("기계조선융합공학과")
 
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
@@ -96,6 +111,13 @@ def tagging(URL, title):
 		tag_list.append("기타")
 	elif url[2] == 'jobinfo':
 		tag_job(url, title, tag_list)
+	elif url[2] == 'lec':
+		tag_list.append("강의자료")
+		return {"tag":list(set(tag_list))}
+	elif url[2] == 'competition':
+		tag_list.append("공모전&대외활동")
+		if title.find("[스펙업]") != -1:
+			tag_list.append("스펙업")
 
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
@@ -113,7 +135,7 @@ def tag_main(url,title,tag_list):
 			tag_list.append("주간식단표")
 
 	# 부경대 메인 자유게시판
-	elif url[2] == "freeboard":
+	elif url[2] == "free":
 		tag_list.append("기타")
 
 	# 부경대 메인 열린장터
@@ -256,13 +278,13 @@ def tag_public(url, title, tag_list):
 	if title.find("행사") != -1 or title.find("참가") != -1\
 		or title.find("쇼") != -1 or title.find("프로그램") != -1\
 		or title.find("대회") != -1\
-		or (url[1] == 'job' and url[2] == 'competition')\
+		or url[2] == 'competition'\
 		or title.find("캠프") != -1 or title.find("축제") != -1\
 		or title.find("박람회") != -1 or title.find("콘서트") != -1\
-		or title.find("공모전") != -1:
+		or title.find("공모전") != -1 or title.find("포럼") != -1:
 		tag_list.append("행사")
 
-	if title.find("공모") != -1 or title.find("대외활동") != -1:
+	if title.find("공모전") != -1 or title.find("대외활동") != -1:
 		tag_list.append("공모전&대외활동")
 
 	if title.find("특강") != -1 or   title.find("설명회") != -1:

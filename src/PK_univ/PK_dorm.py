@@ -1,7 +1,7 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
-from PK_global import PK_dorm_start
+from PK_global import startdate_dict
 from tag import tagging
 from post_wash import post_wash
 from recent_date import get_recent_date
@@ -49,7 +49,8 @@ def parsing(driver, URL, is_first):
 
 
 def list_parse(bs0bj, URL, page, latest_datetime = None):
-	start_datetime = PK_dorm_start
+	target = URL['info'].split('_')[1]
+	start_datetime = startdate_dict[target]
 	db_docs = []
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]

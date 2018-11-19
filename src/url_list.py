@@ -3,7 +3,7 @@ List = (\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=5&p_boardcode=PK10000005",\
 	'info':"PK_main_notice"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=15&p_boardcode=PK10000015",\
-	'info':"PK_main_freeboard"},\
+	'info':"PK_main_free"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=18&p_boardcode=PK10000018",\
 	'info':"PK_main_openmarket"},\
 	{'url':"http://www.pknu.ac.kr/usrBoardActn.do?p_bm_idx=16&p_boardcode=PK10000016",\
@@ -81,6 +81,7 @@ List = (\
 	{'url':"http://sh.pknu.ac.kr/sh/bbs/bbs/board.php?bo_table=b14",\
 	'info':"PK_sh_notice"},\
 	# 학과 홈페이지
+	#cms 페이지(duem)
 	# 글로벌자율전공학부 34부터
 	{'url':"http://cms.pknu.ac.kr/duem/view.do?no=1024",\
 	'info':"PK_duem_notice"},\
@@ -98,8 +99,140 @@ List = (\
 	'info':"PK_japan_notice"},\
 	{'url':"http://cms.pknu.ac.kr/japanese/view.do?no=10537",\
 	'info':"PK_japan_jobinfo"},\
+	#사학과 40
+	{'url':"http://cms.pknu.ac.kr/history/view.do?no=1172",\
+	'info':"PK_history_notice"},\
+	#경제학부 41
+	{'url':"http://cms.pknu.ac.kr/economic/view.do?no=1150",\
+	'info':"PK_economic_notice"},\
+	{'url':"http://cms.pknu.ac.kr/economic/view.do?no=1232",\
+	'info':"PK_economic_jobinfo"},\
+	# 법학과 42
+	{'url':"http://cms.pknu.ac.kr/pknulaw/view.do?no=1117",\
+	'info':"PK_pknulaw_notice"},\
+	# 행정학과 43
+	{'url':"http://cms.pknu.ac.kr/pknupa/view.do?no=8820",\
+	'info':"PK_pknupa_notice"},\
+	# 중국학과 44
+	{'url':"http://cms.pknu.ac.kr/chinese/view.do?no=9202",\
+	'info':"PK_chinese_notice"},\
+	#신문방송학과 45
+	{'url':"http://cms.pknu.ac.kr/masscom/view.do?no=6650",\
+	'info':"PK_masscom_notice"},\
+	#정치외교학과 46
+	{'url':"http://cms.pknu.ac.kr/politics/view.do?no=4176",\
+	'info':"PK_politics_notice"},\
+	{'url':"http://cms.pknu.ac.kr/politics/view.do?no=4080",\
+	'info':"PK_politics_jobinfo"},\
+	#유아교육과 48
+	{'url':"http://cms.pknu.ac.kr/education/view.do?no=1749",\
+	'info':"PK_education_notice"},\
+	{'url':"http://cms.pknu.ac.kr/education/view.do?no=1624",\
+	'info':"PK_education_jobinfo"},\
+	#시각디자인학과 50
+	{'url':"http://cms.pknu.ac.kr/visual/view.do?no=8127",\
+	'info':"PK_visual_notice"},\
+	{'url':"http://cms.pknu.ac.kr/visual/view.do?no=7837",\
+	'info':"PK_visual_jobinfo"},\
+	{'url':"http://cms.pknu.ac.kr/visual/view.do?no=7836",\
+	'info':"PK_visual_competition"},\
+	#공업디자인학과 53
+	{'url':"http://cms.pknu.ac.kr/industrial/view.do?no=8108",\
+	'info':"PK_industrial_notice"},\
+	{'url':"http://cms.pknu.ac.kr/industrial/view.do?no=8109",\
+	'info':"PK_industrial_free"},\
+	#패션디자인학과 55
+	{'url':"http://cms.pknu.ac.kr/fashion/view.do?no=7312",\
+	'info':"PK_fashion_notice"},\
+	{'url':"http://cms.pknu.ac.kr/fashion/view.do?no=7309",\
+	'info':"PK_fashion_jobinfo"},\
+	#해양스포츠학과 57
+	{'url':"http://cms.pknu.ac.kr/marinesports/view.do?no=1671",\
+	'info':"PK_marinesports_notice"},\
+	#국제통상학부 58
+	{'url':"http://cms.pknu.ac.kr/pknudic/view.do?no=1375",\
+	'info':"PK_pknudic_notice"},\
+	#건축공학과 59
+	{'url':"https://cms.pknu.ac.kr/archieng/view.do?no=984",\
+	'info':"PK_archieng_notice"},\
+	{'url':"https://cms.pknu.ac.kr/archieng/view.do?no=993",\
+	'info':"PK_archieng_jobinfo"},\
+	#건축학과 61
+	{'url':"http://cms.pknu.ac.kr/pknuarchi/view.do?no=9394",\
+	'info':"PK_pknuarchi_notice"},\
+	{'url':"http://cms.pknu.ac.kr/pknuarchi/view.do?no=9392",\
+	'info':"PK_pknuarchi_jobinfo"},\
+	#소방공학과 63
+	{'url':"http://cms.pknu.ac.kr/fire/view.do?no=2104",\
+	'info':"PK_fire_notice"},\
+	{'url':"http://cms.pknu.ac.kr/fire/view.do?no=9868",\
+	'info':"PK_fire_jobinfo"},\
+	#시스템경영공학부 65
+	{'url':"http://cms.pknu.ac.kr/pknusme/view.do?no=9598",\
+	'info':"PK_pknusme_notice"},\
+	{'url':"http://cms.pknu.ac.kr/pknusme/view.do?no=9596",\
+	'info':"PK_pknusme_jobinfo"},\
+	#it융합응용공학과 67
+	{'url':"http://cms.pknu.ac.kr/itcae/view.do?no=9576",\
+	'info':"PK_itcae_notice"},\
+	{'url':"http://cms.pknu.ac.kr/itcae/view.do?no=9572",\
+	'info':"PK_itcae_jobinfo"},\
+	#융합디스플레이공학과 69
+	{'url':"http://cms.pknu.ac.kr/imagesys/view.do?no=1437",\
+	'info':"PK_imagesys_notice"},\
+	#전기공학과 70
+	{'url':"http://cms.pknu.ac.kr/electric_eng/view.do?no=3011",\
+	'info':"PK_electric_notice"},\
+	{'url':"http://cms.pknu.ac.kr/electric_eng/view.do?no=3200",\
+	'info':"PK_electric_jobinfo"},\
+	{'url':"http://cms.pknu.ac.kr/electric_eng/view.do?no=3279",\
+	'info':"PK_electric_lec"},\
+	# 제어계측공학과 73
+	{'url':"https://cms.pknu.ac.kr/control/view.do?no=3217",\
+	'info':"PK_control_notice"},\
+	{'url':"https://cms.pknu.ac.kr/control/view.do?no=3219",\
+	'info':"PK_control_lec"},\
+	#공업화학과 75
+	{'url':"http://cms.pknu.ac.kr/induseng/view.do?no=2686",\
+	'info':"PK_induseng_notice"},\
+	{'url':"http://cms.pknu.ac.kr/induseng/view.do?no=2420",\
+	'info':"PK_induseng_jobinfo"},\
+	{'url':"https://cms.pknu.ac.kr/control/view.do?no=3217",\
+	'info':"PK_induseng_competition"},\
+	#환경공학과 78
+	{'url':"http://cms.pknu.ac.kr/env_eng/view.do?no=3053",\
+	'info':"PK_env_notice"},\
+	#해양공학과 79
+	{'url':"http://cms.pknu.ac.kr/oceaneng/view.do?no=4164",\
+	'info':"PK_oceaneng_notice"},\
+	{'url':"http://cms.pknu.ac.kr/oceaneng/view.do?no=4162",\
+	'info':"PK_oceaneng_jobinfo"},\
+	#해양학과 81
+	{'url':"http://cms.pknu.ac.kr/pkuocean/view.do?no=1253",\
+	'info':"PK_pkuocean_notice"},\
+	{'url':"http://cms.pknu.ac.kr/pkuocean/view.do?no=1251",\
+	'info':"PK_pkuocean_jobinfo"},\
+	#지구환경과학과 83
+	{'url':"http://cms.pknu.ac.kr/earth/view.do?no=1813",\
+	'info':"PK_earth_notice"},\
+	{'url':"http://cms.pknu.ac.kr/earth/view.do?no=1811",\
+	'info':"PK_earth_jobinfo"},\
+	#환경대기과학과 85
+	{'url':"http://cms.pknu.ac.kr/envatm/view.do?no=1450",\
+	'info':"PK_envatm_notice"},\
+	#기계조선융합공학과 86
+	{'url':"http://cms.pknu.ac.kr/msce/view.do?no=9611",\
+	'info':"PK_msce_notice"},\
 
 	)
 
 '''
+안전공학과
+의공학과
+상담학과
+공공안전경차학과
+전기전자소프트웨어공학과
+학과 홈페이지를 버렸나?..
+
+정보통신 전자 기계공학과 기계설계공학과
 '''

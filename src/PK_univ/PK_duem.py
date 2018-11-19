@@ -1,7 +1,7 @@
 from url_parser import URLparser
 from bs4 import BeautifulSoup
 from db_manager import db_manage
-import PK_global
+from PK_global import startdate_dict
 from tag import tagging
 from recent_date import get_recent_date
 from post_wash import post_wash
@@ -12,14 +12,7 @@ def parsing(driver, URL, is_first):
 
 	target = URL['info'].split('_')[1]
 	global start_datetime
-	if target == 'duem':
-		start_datetime = PK_global.PK_duem_start
-	elif target == 'korean':
-		start_datetime = PK_global.PK_korean_start
-	elif target == 'japan':
-		start_datetime = PK_global.PK_japan_start
-	elif target == 'job':
-		start_datetime = PK_global.PK_job_start
+	start_datetime = startdate_dict[target]
 
 	if is_first == False:
 		latest_datetime = db_manage("get_recent", URL['info'])

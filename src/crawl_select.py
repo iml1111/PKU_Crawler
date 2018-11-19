@@ -14,12 +14,17 @@ import PK_coop
 import PK_sh
 import PK_duem
 
-filterlist = ['main','today']
+seleniumlist = ['main','today']
+duemlist = ['duem','korean','japan','job','history','economic',\
+'pknulaw','pknupa','chinese','masscom','politics','education','visual',\
+'industrial','fashion','marinesports','pknudic','archieng','pknuarchi','fire',\
+'pknusme','itcae','imagesys','electric','control','induseng','env','oceaneng','pkuocean',\
+'earth','envatm','msce']
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
 
-	if select in filterlist:
+	if select in seleniumlist:
 		try:
 			driver = URLdriving(URL)
 		except Exception as e:
@@ -60,6 +65,5 @@ def Crawling(target, URL, is_first):
 			PK_coop.parsing(driver, URL, is_first)
 		elif select == 'sh':
 			PK_sh.parsing(driver, URL, is_first)
-		elif select == 'duem' or select == 'korean' or select == 'japan'\
-		or select == 'job':
+		elif select in duemlist:
 			PK_duem.parsing(driver, URL, is_first)
