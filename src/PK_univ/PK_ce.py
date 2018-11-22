@@ -90,7 +90,10 @@ def content_parse(domain, url):
 	obj = obj.find_next("td").find_next("td")
 	db_record.update({"date": obj.get_text().strip()})
 
-	obj = bs0bj.find("tr",{"class":"head"}).find_next("tr")
-	db_record.update({"post": post_wash(str(obj.get_text().strip()))})
+	try:
+		obj = bs0bj.find("tr",{"class":"head"}).find_next("tr")
+		db_record.update({"post": post_wash(str(obj.get_text().strip()))})
+	except:
+		db_record.update({"post": 1})
 
 	return db_record

@@ -4,13 +4,13 @@ from db_manager import db_manage
 from PK_global import startdate_dict
 from tag import tagging
 from recent_date import get_recent_date
+from post_wash import post_wash
 
 def parsing(driver, URL, is_first):
 	if is_first == False:
 		latest_datetime = db_manage("get_recent", URL['info'])
 	recent_date = None
 	page = 1
-	print("start_date:" + start_datetime)
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
@@ -93,7 +93,10 @@ def content_parse(url):
 	obj = "20" + obj.get_text().strip()
 	db_record.update({"date":obj})
 
-	obj = bs0bj.find("div",{"id":"bo_v_con"}).get_text().strip()
-	db_record.update({"post":obj})
+	try:
+		obj = bs0bj.find("div",{"id":"bo_v_con"}).get_text().strip()
+		db_record.update({"post":post_wash(obj)})
+	except:
+		db_record.update({"post":1})
 
 	return db_record

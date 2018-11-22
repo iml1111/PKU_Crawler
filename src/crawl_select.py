@@ -13,13 +13,18 @@ import PK_dcinside
 import PK_coop
 import PK_sh
 import PK_duem
+import PK_ee
+import PK_eelogin
 
 seleniumlist = ['main','today']
+
 duemlist = ['duem','korean','japan','job','history','economic',\
 'pknulaw','pknupa','chinese','masscom','politics','education','visual',\
 'industrial','fashion','marinesports','pknudic','archieng','pknuarchi','fire',\
 'pknusme','itcae','imagesys','electric','control','induseng','env','oceaneng','pkuocean',\
 'earth','envatm','msce']
+
+eelist = ['ee','ice','me','mae','ref']
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
@@ -35,8 +40,10 @@ def Crawling(target, URL, is_first):
 			driver = URLparser(URL['url'])
 		except Exception as e:
 			print("Connect Error")
-			return	
-		
+			return
+
+	if driver == None:
+		return
 
 	if target == 'PK_univ':
 		print('-------------------------------------')
@@ -67,3 +74,7 @@ def Crawling(target, URL, is_first):
 			PK_sh.parsing(driver, URL, is_first)
 		elif select in duemlist:
 			PK_duem.parsing(driver, URL, is_first)
+		elif select in eelist:
+			PK_ee.parsing(driver, URL, is_first)
+		elif select == 'eelogin':
+			PK_eelogin.parsing(driver, URL, is_first)

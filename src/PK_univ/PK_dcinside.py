@@ -103,8 +103,11 @@ def content_parse(url):
 	obj = obj.strip()
 	db_record.update({"date":obj})
 
-	obj = bs0bj.find("div",{"class":"gallview_contents"}).find("div",{"style":"overflow:hidden;"})
-	obj = obj.get_text().strip()
-	db_record.update({"post":post_wash(obj)})
+	try:
+		obj = bs0bj.find("div",{"class":"gallview_contents"}).find("div",{"style":"overflow:hidden;"})
+		obj = obj.get_text().strip()
+		db_record.update({"post":post_wash(obj)})
+	except:
+		db_record.update({"post":1})
 
 	return db_record

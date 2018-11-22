@@ -101,6 +101,11 @@ def tagging(URL, title):
 	elif url[1] == "earth": tag_list.append("지구환경과학과")
 	elif url[1] == "envatm": tag_list.append("환경대기과학과")
 	elif url[1] == "msce": tag_list.append("기계조선융합공학과")
+	elif url[1] == "ee" or url[1] == "eelogin": tag_list.append("전자공학과")
+	elif url[1] == "ice": tag_list.append("정보통신공학과")
+	elif url[1] == "me": tag_list.append("기계공학과")
+	elif url[1] == "mae": tag_list.append("기계설계공학과")
+	elif url[1] == "ref": tag_list.append("냉동공조공학과")
 
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
@@ -118,6 +123,11 @@ def tagging(URL, title):
 		tag_list.append("공모전&대외활동")
 		if title.find("[스펙업]") != -1:
 			tag_list.append("스펙업")
+	elif url[2] == 'kin':
+		tag_list.append("지식인")
+	elif url[2] == 'jh':
+		tag_list.append("공지")
+		tag_list.append("장학")
 
 	###### 공용 부가 태그 ######
 	tag_public(url, title, tag_list)
@@ -284,7 +294,8 @@ def tag_public(url, title, tag_list):
 		or title.find("공모전") != -1 or title.find("포럼") != -1:
 		tag_list.append("행사")
 
-	if title.find("공모전") != -1 or title.find("대외활동") != -1:
+	if title.find("공모전") != -1 or title.find("대외활동") != -1\
+	or title.find("프로젝트") != -1:
 		tag_list.append("공모전&대외활동")
 
 	if title.find("특강") != -1 or   title.find("설명회") != -1:
@@ -302,6 +313,9 @@ def tag_public(url, title, tag_list):
 
 	if title.find("멘토") != -1 or title.find("멘티") != -1:
 		tag_list.append("멘토링")
+		tag_list.append("교육&설명회")
+
+	if title.find("교육") != -1:
 		tag_list.append("교육&설명회")
 
 	if title.find("인문") != -1:
@@ -447,6 +461,3 @@ def tag_pknu(url, title, tag_list):
 
 	elif url[2] == 'twinkle':
 		tag_list.append("반짝정원")
-
-	elif url[2] == 'kin':
-		tag_list.append("부경지식인")

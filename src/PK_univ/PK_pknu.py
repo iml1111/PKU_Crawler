@@ -12,7 +12,6 @@ def parsing(driver, URL, is_first):
 		latest_datetime = db_manage("get_recent", URL['info'])
 	recent_date = None
 	page = 1
-	print("start_date:" + PK_pknu_start)
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		bs0bj = BeautifulSoup(driver.read(), "html.parser")
@@ -107,7 +106,9 @@ def content_parse(domain, url):
 	date = obj.attrs["content"].split("KST")[0] + " " + obj.attrs["content"].split("KST")[1]
 	db_record.update({"date": date})
 
-	obj = bs0bj.find("div",{"itemprop":"description"})
-	db_record.update({"post": post_wash(str(obj.get_text().strip()))})
-
+	try:
+		obj = bs0bj.find("div",{"itemprop":"description"})
+		db_record.update({"post": post_wash(str(obj.get_text().strip()))})
+	except:
+		db_record.update({"post": 1})
 	return db_record

@@ -12,7 +12,10 @@ def URLdriving(URL):
 		driver.get(URL['url'])
 	except:
 		print("Connection Error")
-		driver.get(URL['url'])
+		try:
+			driver.get(URL['url'])
+		except:
+			return None
 
 	driver.implicitly_wait(1)
 
@@ -23,6 +26,9 @@ def URLparser(URL):
 		html = AppURLopener().open(URL)
 	except:
 		print("Connection Error")
-		html = AppURLopener().open(URL)
+		try:
+			html = AppURLopener().open(URL)
+		except:
+			return None
 
 	return html

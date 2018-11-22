@@ -11,7 +11,6 @@ def parsing(driver, URL, is_first):
 		latest_datetime = db_manage("get_recent", URL['info'])
 	recent_date = None
 	page = 1
-	print("start_date:" + PK_main_start)
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		driver.execute_script("goPage(2)")
@@ -102,8 +101,11 @@ def content_parse(domain, url):
 	obj = bs0bj.find(text="작성일")
 	db_record.update({"date":obj.findNext('td').get_text().strip()})
 
-	obj = bs0bj.find("div",{'class':"bbs-body"})
-	db_record.update({"post":str(obj.get_text().strip())})
+	try:
+		obj = bs0bj.find("div",{'class':"bbs-body"})
+		db_record.update({"post":str(obj.get_text().strip())})
+	except:
+		db_record.update({"post":1})
 
 	return db_record
 

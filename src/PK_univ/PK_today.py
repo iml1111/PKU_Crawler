@@ -11,7 +11,6 @@ def parsing(driver, URL, is_first):
 		latest_datetime = db_manage("get_recent", URL['info'])
 	recent_date = None
 	page = 1
-	print("start_date:" + PK_today_start)
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
 		driver.execute_script("goPage(2)")
