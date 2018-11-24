@@ -256,6 +256,11 @@ List = (\
 	'info':"PK_ref_notice"},\
 	{'url':"http://ref.pknu.ac.kr/s_source/esboard/list.php?b_id=b4",\
 	'info':"PK_ref_jobinfo"},\
+	#해양바이오신소재 103
+	{'url':"http://aqua-culture.pknu.ac.kr/sub06/sub01.asp?Bid=notice",\
+	'info':"PK_aquacul_notice"},\
+	{'url':"http://aqua-culture.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
+	'info':"PK_aquacul_jobinfo"},\
 	)
 
 '''

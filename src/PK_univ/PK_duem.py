@@ -30,7 +30,7 @@ def parsing(driver, URL, is_first):
 
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			db_docs = list_parse(bs0bj, URL, page, lastet_datetime)
+			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:

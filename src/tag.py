@@ -106,6 +106,7 @@ def tagging(URL, title):
 	elif url[1] == "me": tag_list.append("기계공학과")
 	elif url[1] == "mae": tag_list.append("기계설계공학과")
 	elif url[1] == "ref": tag_list.append("냉동공조공학과")
+	elif url[1] == "aquacul": tag_list.append("해양바이오신소재학과")
 
 	if url[2] == "lecture":
 		tag_list.append("강의평가")

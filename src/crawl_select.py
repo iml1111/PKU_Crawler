@@ -15,6 +15,7 @@ import PK_sh
 import PK_duem
 import PK_ee
 import PK_eelogin
+import PK_aquacul
 
 seleniumlist = ['main','today']
 
@@ -32,6 +33,7 @@ def Crawling(target, URL, is_first):
 	if select in seleniumlist:
 		try:
 			driver = URLdriving(URL)
+
 		except Exception as e:
 			print("Connect Error")
 			return
@@ -78,3 +80,6 @@ def Crawling(target, URL, is_first):
 			PK_ee.parsing(driver, URL, is_first)
 		elif select == 'eelogin':
 			PK_eelogin.parsing(driver, URL, is_first)
+		elif select == 'aquacul':
+			PK_aquacul.parsing(driver, URL, is_first)
+
