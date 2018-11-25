@@ -261,31 +261,77 @@ List = (\
 	'info':"PK_aquacul_notice"},\
 	{'url':"http://aqua-culture.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
 	'info':"PK_aquacul_jobinfo"},\
+	#해양생산시스템관리학부 105
+	{'url':"http://mpsm.pknu.ac.kr/sub06/sub01.asp?BId=notice",\
+	'info':"PK_mpsm_notice"},\
+	{'url':"http://mpsm.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
+	'info':"PK_mpsm_jobinfo"},\
+	#해양수산경영학과 107
+	{'url':"http://mbe.pknu.ac.kr/sub06/sub01.asp?BId=notice",\
+	'info':"PK_mbe_notice"},\
+	{'url':"http://mbe.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
+	'info':"PK_mbe_jobinfo"},\
+	#수해양산업교육과 109
+	{'url':"http://fedu.pknu.ac.kr/sub06/sub01.asp?Bid=notice",\
+	'info':"PK_fedu_notice"},\
+	#자원생물학과 110
+	{'url':"http://marinebio.pknu.ac.kr/sub06/sub01.asp?Bid=notice",\
+	'info':"PK_marinebio_notice"},\
+	{'url':"http://marinebio.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
+	'info':"PK_marinebio_jobinfo"},\
+	#식품영양학과 112
+	{'url':"http://nulife.pknu.ac.kr/sub06/sub01.asp?BId=notice",\
+	'info':"PK_nulife_notice"},\
+	#수산생명의학과 113
+	{'url':"http://aquamed.pknu.ac.kr/sub06/sub01.asp?Bid=notice",\
+	'info':"PK_aquamed_notice"},\
+	{'url':"http://aquamed.pknu.ac.kr/sub06/sub01.asp?Bid=employ",\
+	'info':"PK_aquamed_jobinfo"},\
+	#기계시스템공학과 115
+	{'url':"http://mse.pknu.ac.kr/sub07/sub01.asp?BId=notice",\
+	'info':"PK_mse_notice"},\
+	#물리학과 116
+	{'url':"http://physics.pknu.ac.kr/03_community/06.php?part=college",\
+	'info':"PK_physics_notice"},\
+	{'url':"http://physics.pknu.ac.kr/03_community/06_2.php?part=scholarship",\
+	'info':"PK_physics_jh"},\
+	{'url':"http://physics.pknu.ac.kr/03_community/01.php?sv=title",\
+	'info':"PK_physics_jobinfo"},\
+	#미생물학과 119 
+	{'url':"http://microbiology.pknu.ac.kr/03_community/01.php?sv=title",\
+	'info':"PK_microbiology_notice"},\
+	{'url':"http://microbiology.pknu.ac.kr/03_community/02.php?sv=title",\
+	'info':"PK_microbiology_jobinfo"},\
+	#통계학과 121
+	{'url':"http://stat.pknu.ac.kr/kor/03_community/01.php?sv=",\
+	'info':"PK_stat_notice"},\
+	{'url':"http://stat.pknu.ac.kr/kor/03_community/02.php?sv=",\
+	'info':"PK_stat_jobinfo"},\
+	#응용수학과 123
+	{'url':"http://math.pknu.ac.kr/kor/05_community/01.php?sv=",\
+	'info':"PK_math_notice"},\
+	#응용수학과 124
+	{'url':"http://nursing.pknu.ac.kr/kor/03_community/01.php?sw=",\
+	'info':"PK_nursing_notice"},\
+	#화학과 125
+	{'url':"http://chem.pknu.ac.kr/index.php?mid=notice",\
+	'info':"PK_chem_notice"},\
+	{'url':"http://chem.pknu.ac.kr/index.php?mid=j_board",\
+	'info':"PK_chem_jobinfo"},\
+	#경영학부 127
+	{'url':"http://dba.pknu.ac.kr/700/01.php",\
+	'info':"PK_dba_notice"},\
+	{'url':"http://dba.pknu.ac.kr/600/01.php",\
+	'info':"PK_dba_jobinfo"},\
+	#영어영문학과 129
+	{'url':"http://english.pknu.ac.kr/index.php?mid=ko_notice",\
+	'info':"PK_english_notice"},\
+	{'url':"http://english.pknu.ac.kr/index.php?mid=ko_career_notice",\
+	'info':"PK_english_jobinfo"},\
+
 	)
 
 '''
-안전공학과
-의공학과
-상담학과
-공공안전경차학과
-전기전자소프트웨어공학과
-조선해양시스템
-토목
-학과 홈페이지를 버렸나?..
+영어 
 
-정보통신 전자 기계공학과 기계설계공학과 냉동공조
-
-http://english.pknu.ac.kr/
-영어영문학과
-/main/main.asp bld = noitce
-재료공학과
-l/main/main.php sub05/sub0501.php
-국제지역학부
-
-/kor/03_community/01.php ???
-통계학과 응용수학과 미생물 간호
-
-http://food.pknu.ac.kr/sub06/sub01.asp
-식품공학과 해양바이오신소재 해양수산경영 수해양산업 자원생물 
-식품영양학 생물공학  수산생명의학 생태공학?
 '''

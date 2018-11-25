@@ -13,10 +13,7 @@ def parsing(driver, URL, is_first):
 	page = 1
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
-		bs0bj = BeautifulSoup(driver.read(), "html.parser")
-		bs0bj = bs0bj.find("td",{"style":"padding-bottom:30px"})\
-		.find("td",{"style":"padding-bottom:30px"}).find("table")
-		
+		bs0bj = BeautifulSoup(driver.read(), "html.parser")	
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
 			db_docs = list_parse(driver, bs0bj, URL, page)
@@ -45,6 +42,7 @@ def parsing(driver, URL, is_first):
 		db_manage("renewal_date", URL['info'], recent_date, is_first = is_first)
 	recent_date = None
 
+
 def list_parse(driver, bs0bj, URL, page, latest_datetime = None):
 	target = URL['info'].split('_')[1]
 	start_datetime = startdate_dict[target]
@@ -55,9 +53,30 @@ def list_parse(driver, bs0bj, URL, page, latest_datetime = None):
 	
 	for post in post_list:
 		db_record = {}
-		url = domain + post.attrs['onclick'].split("'")[1]
+		try:
+			url = domain + post.attrs['onclick'].split("'")[1]
+		except:
+			continue
+
 		db_record.update(content_parse(url))
-		return
+		db_record.update(tagging(URL, db_record['title']))
+
+		print(db_record['date'])
+		# first 파싱이고 해당 글의 시간 조건이 맞을 때
+		if db_record['date'] >= start_datetime  and \
+				latest_datetime == None:
+			db_docs.append(db_record)
+		#renewal 파싱이고 해당 글의 갱신 조건이 맞을 때
+		elif latest_datetime != None and \
+				db_record['date'] >= latest_datetime['recent_date'] and \
+					db_record['title'] != latest_datetime['title']:
+			db_docs.append(db_record)		
+		else:
+			continue
+
+	return db_docs
+
+
 
 def content_parse(url):
 	html = URLparser(url)
@@ -65,4 +84,15 @@ def content_parse(url):
 	db_record = {}
 	db_record.update({"url":url})
 
+	obj = bs0bj.find("td",{"class":"boardSub"})
+	db_record.update({"title":obj.get_text().strip()})
+
+	obj = obj.findNext("td").findNext("td").get_text().strip()
+	obj = obj.replace(".","-")
+	db_record.update({"date":obj})
+
+	obj = bs0bj.find("td",{"class":"contens"}).get_text().strip()
+	db_record.update({"post":post_wash(obj)})
+
+	return db_record
 	

@@ -16,6 +16,10 @@ import PK_duem
 import PK_ee
 import PK_eelogin
 import PK_aquacul
+import PK_physics
+import PK_chem
+import PK_dba
+import PK_english
 
 seleniumlist = ['main','today']
 
@@ -24,8 +28,9 @@ duemlist = ['duem','korean','japan','job','history','economic',\
 'industrial','fashion','marinesports','pknudic','archieng','pknuarchi','fire',\
 'pknusme','itcae','imagesys','electric','control','induseng','env','oceaneng','pkuocean',\
 'earth','envatm','msce']
-
 eelist = ['ee','ice','me','mae','ref']
+aquacullist = ['aquacul','mpsm','mbe','fedu','marinebio','nulife','aquamed','mse']
+phlist = ['physics','microbiology','stat','math','nursing']
 
 def Crawling(target, URL, is_first):
 	select = URL['info'].split('_')[1]
@@ -80,6 +85,14 @@ def Crawling(target, URL, is_first):
 			PK_ee.parsing(driver, URL, is_first)
 		elif select == 'eelogin':
 			PK_eelogin.parsing(driver, URL, is_first)
-		elif select == 'aquacul':
+		elif select in aquacullist:
 			PK_aquacul.parsing(driver, URL, is_first)
+		elif select in phlist:
+			PK_physics.parsing(driver, URL, is_first)
+		elif select == 'chem':
+			PK_chem.parsing(driver, URL, is_first)
+		elif select == 'dba':
+			PK_dba.parsing(driver, URL, is_first)
+		elif select == 'english':
+			PK_english.parsing(driver, URL, is_first)
 

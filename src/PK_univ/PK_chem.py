@@ -13,14 +13,15 @@ def parsing(driver, URL, is_first):
 	page = 1
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
-		bs0bj = BeautifulSoup(driver.read(), "html.parser")
-		bs0bj = bs0bj.find("td",{"class":"text12graylight"}).find('td',{"valign":"top"}).find("table")
+		bs0bj = BeautifulSoup(driver.read(), "html.parser")	
+		bs0bj = bs0bj.find("div",{"class":"board_list"}).tbody
 		# first 크롤링일 경우 그냥 진행
 		if is_first == True:
-			db_docs = list_parse(bs0bj, URL, page)
+			db_docs = list_parse(driver, bs0bj, URL, page)
 		# renewal 모드일 경우. DB에서 가장 최신 게시물의 정보를 가져옴.
 		else:
-			db_docs = list_parse(bs0bj, URL, page, latest_datetime)
+			db_docs = list_parse(driver, bs0bj, URL, page, latest_datetime)
+
 		# 맨 첫 번째 페이지를 파싱했고, 해당 페이지에서 글을 가져온 경우
 		# 해당 글을 최신 날짜를 딕셔너리로 저장
 		if page == 1 and len(db_docs) >= 1:
@@ -43,23 +44,19 @@ def parsing(driver, URL, is_first):
 	recent_date = None
 
 
-def list_parse(bs0bj, URL, page, latest_datetime = None):
+def list_parse(driver, bs0bj, URL, page, latest_datetime = None):
 	target = URL['info'].split('_')[1]
 	start_datetime = startdate_dict[target]
 	db_docs = []
-	post_list = bs0bj.findAll("a")
-	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2] + '/'\
-	 + URL['url'].split('/')[3] + '/' + URL['url'].split('/')[4] + '/'
+	post_list = bs0bj.findAll("tr")
 
 	for post in post_list:
 		db_record = {}
 		try:
-			obj = post.attrs['href']
-		except Exception as e:
-			return db_docs
-
-		db_record.update(content_parse(domain + obj))
-		# 태그 생성
+			url = post.find("a").attrs['href']
+		except:
+			continue
+		db_record.update(content_parse(url))
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
@@ -74,26 +71,23 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 			db_docs.append(db_record)		
 		else:
 			continue
+
 	return db_docs
+
 
 def content_parse(url):
 	html = URLparser(url)
-	bs0bj = BeautifulSoup(html.read(), "html.parser").find("td",{"class":"text12graylight"})
+	bs0bj = BeautifulSoup(html.read(), "html.parser")
 	db_record = {}
 	db_record.update({"url":url})
-	
-	obj = bs0bj.find("td",{"class":"title12"}).get_text().strip()
-	db_record.update({"title":obj})
 
-	obj =bs0bj.find("td",{"class":"text11darkgray"}).get_text().strip()
+	obj = bs0bj.find("div",{"class":"read_header"}).h1
+	db_record.update({"title":obj.get_text().strip()})
+
+	obj = bs0bj.find("p",{"class":"time"}).get_text().strip()
 	obj = obj.replace(".","-")
 	db_record.update({"date":obj})
 
-	try:
-		obj = bs0bj.find("td",{"class":"text12graylight", "align":"left", "valign":"top"}).get_text().strip()
-		db_record.update({"post":post_wash(obj)})
-	except:
-		db_record.update({"post":1})
-	
-	
+	obj = bs0bj.find("div",{"class":"read_body"}).get_text().strip()
+	db_record.update({"post":post_wash(obj)})
 	return db_record
