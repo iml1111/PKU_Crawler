@@ -1,19 +1,14 @@
-import re
-import string
 import pymongo 
-import os
-import datetime
-from operator import itemgetter
 
-db_name = 'uni_board'
+db_name = 'pookle'
 ip = 'localhost'
 port = 27017
 
-def Search(text):
+def Search(db, text):
+	from operator import itemgetter
 	result = []
 	obj_list = []
 	text_list = text.split(" ")
-	db = db_access()
 
 	for element in text_list:
 
@@ -40,10 +35,9 @@ def Search(text):
 					result.append(i)
 
 	for i in result:
-		i['count'] += len(i['element'])*3
+		i['count'] += len(i['element'])*5
 
-
-	result = sorted(result, key=itemgetter('count'),reverse = True)
+	result = sorted(result, key=itemgetter('count','date'),reverse = True)
 	return result
 
 def db_access():
@@ -54,11 +48,12 @@ def db_access():
 if __name__ == '__main__':
 
 	n = input("Search: ")
-	List = Search(n)
+	List = Search(db_access(),n)
 	print(List)
 	print()
-	print("This is Top4")
-	print(List[0])
-	print(List[1])
-	print(List[2])
-	print(List[3])
+	if len(List) >= 4:
+		print("This is Top4")
+		print(List[0])
+		print(List[1])
+		print(List[2])
+		print(List[3])

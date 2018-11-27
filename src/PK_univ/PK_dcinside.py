@@ -55,7 +55,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 	post_list = bs0bj.findAll("tr")
 	domain = URL['url'].split('/')[0] + '//' + URL['url'].split('/')[2]
 
-	for post in post_list[:]:
+	for post in post_list[1:]:
 		db_record = {}
 		
 		try:
@@ -65,7 +65,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 		db_record.update(content_parse(domain + obj))
 		db_record.update(tagging(URL, db_record['title']))
 
-		print(db_record['date'], db_record['title'])
+		print(db_record['date'])
 		# first 파싱이고 해당 글의 시간 조건이 맞을 때
 		if ( db_record['date'] >= start_datetime or  \
 				post.find("em",{"class":"icon_img icon_notice"}) != None ) and \
@@ -84,7 +84,6 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 
 def content_parse(url):
 	html = URLparser(url)
-
 	try:
 		bs0bj = BeautifulSoup(html.read(), "lxml")
 	except:
