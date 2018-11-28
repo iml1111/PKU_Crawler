@@ -13,31 +13,44 @@ def Search(db, text):
 	for element in text_list:
 
 		for col in db.collection_names():
-
-			if col == "recent_date":
+			if col.startwith("PK_") == False:
 				continue
 
-			coll_list = list(db[col].find({"title":{"$regex":element}}))
-			coll_list.extend(list(db[col].find({"tag":{"$elemMatch": {"$regex":element }}})))
-			coll_list.extend(list( db[col].find({"post":{"$regex":element}})))
-
+			coll_list = list(db[col].find({"$or":[{"title":{"$regex":element}},\
+													{"tag":{"$elemMatch": {"$regex":element }}},\
+													{"post":{"$regex":element}}\
+													]}))
 			for i in coll_list:
 				if i['_id'] in obj_list:
 					for j in result:
 						if j['_id'] == i['_id']:
-							j['count'] += 1
+							if j['title'].find(element) != -1:
+								j["score"] += 1
+							if type(j['post']) is str and j['post'].find(element) != -1:
+								j["score"] += 1
+							for tag in j['tag']:
+								if tag.find(element) != -1:
+									j["score"] += 1
+									break
 							j['element'].add(element)
-
 				else:
 					obj_list.append(i['_id'])
-					i.update({"count":1})
+					i.update({"score":0})
+					if i['title'].find(element) != -1:
+						i["score"] += 1
+					if type(i['post']) is str and i['post'].find(element) != -1:
+						i["score"] += 1
+					for tag in i['tag']:
+						if tag.find(element) != -1:
+							i["score"] += 1
+							break
 					i.update({"element":set([element])})
 					result.append(i)
 
 	for i in result:
-		i['count'] += len(i['element'])*5
+		i['score'] += len(i['element'])*5
 
-	result = sorted(result, key=itemgetter('count','date'),reverse = True)
+	result = sorted(result, key=itemgetter('score','date'),reverse = True)
 	return result
 
 def db_access():

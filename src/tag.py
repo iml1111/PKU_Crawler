@@ -47,7 +47,7 @@ def tagging(URL, title):
 	elif url[1] == "pknulogin":
 		if url[2] == 'market':
 			tag_list.append("거래")
-
+			
 	elif url[1] == "dorm":
 		tag_list.append("기숙사")
 
@@ -127,6 +127,7 @@ def tagging(URL, title):
 	if url[2] == "lecture":
 		tag_list.append("강의평가")
 		tag_list.append(title.split(" ")[0])
+		return {"tag":list(set(tag_list))}
 	elif url[2] == "notice":
 		tag_list.append("공지")
 	elif url[2] == 'free':
@@ -147,6 +148,10 @@ def tagging(URL, title):
 		tag_list.append("장학")
 
 	###### 공용 부가 태그 ######
+	if (title.find("책") != -1 or title.find("개론") != -1) and ("거래" in tag_list):
+				tag_list.append("책")
+				return {"tag":list(set(tag_list))}
+
 	tag_public(url, title, tag_list)
 
 	return {"tag":list(set(tag_list))}
@@ -282,10 +287,6 @@ def tag_public(url, title, tag_list):
 	or (title.find("회화") != -1 and title.find("영어회화") == -1):
 		tag_list.append("외국어")
 
-	if (title.find("책") != -1 or title.find("개론") != -1) and ("거래" in tag_list):
-		tag_list.append("책")
-
-
 	if title.find("취업") != -1 or title.find("인턴") != -1\
 	or title.find("채용") != -1\
 	or title.find("공채") != -1 or title.find("일자리") != -1\
@@ -316,13 +317,11 @@ def tag_public(url, title, tag_list):
 		tag_list.append("공모전&대외활동")
 
 	if title.find("특강") != -1 or   title.find("설명회") != -1:
-		tag_list.append("특강")
 		tag_list.append("교육&설명회")
 
 	if title.find("수강") != -1 or title.find("K-MOOC") != -1\
 	or title.find("강좌") != -1:
 		tag_list.append("수강")
-		tag_list.append("교육&설명회")
 
 	if title.find("세미나") != -1:
 		tag_list.append("세미나")
@@ -330,9 +329,6 @@ def tag_public(url, title, tag_list):
 
 	if title.find("멘토") != -1 or title.find("멘티") != -1:
 		tag_list.append("멘토링")
-		tag_list.append("교육&설명회")
-
-	if title.find("교육") != -1:
 		tag_list.append("교육&설명회")
 
 	if title.find("인문") != -1:

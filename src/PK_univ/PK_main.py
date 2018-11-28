@@ -103,7 +103,7 @@ def content_parse(domain, url):
 
 	try:
 		obj = bs0bj.find("div",{'class':"bbs-body"})
-		db_record.update({"post":str(obj.get_text().strip())})
+		db_record.update({"post":post_wash(str(obj.get_text().strip()))})
 	except:
 		db_record.update({"post":1})
 

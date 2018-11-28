@@ -15,8 +15,7 @@ def get_recent_date(URL, db_docs):
 def get_today():
 	import datetime
 
-	dt = datetime.datetime.now()
-	today = str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)\
-	+ " " + str(dt.hour) + ":" + str(dt.minute) + ":" + str(dt.second)
+	now = datetime.datetime.now()
+	date = now.strftime("%Y-%m-%d %H:%M:%S")
 
-	return today
+	return date
