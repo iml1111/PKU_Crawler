@@ -13,7 +13,7 @@ def Search(db, text):
 	for element in text_list:
 
 		for col in db.collection_names():
-			if col.startwith("PK_") == False:
+			if col.startswith("PK_") == False:
 				continue
 
 			coll_list = list(db[col].find({"$or":[{"title":{"$regex":element}},\
@@ -48,7 +48,7 @@ def Search(db, text):
 					result.append(i)
 
 	for i in result:
-		i['score'] += len(i['element'])*5
+		i['score'] += len(i['element'])*4
 
 	result = sorted(result, key=itemgetter('score','date'),reverse = True)
 	return result

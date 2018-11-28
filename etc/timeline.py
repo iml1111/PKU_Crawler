@@ -58,22 +58,30 @@ def View(db, itag, etag):
 		for i in coll_list:
 			if i['date'] >= date:
 				result.append(i)
-	'''
-	timeline = []
-	timeline[0] = sorted(result, key=itemgetter("fav_cnt","view","date"), reverse = True)
-	timeline[1] = shuffle(result)
+
+	#fav_list = sorted(result, key=itemgetter("fav_cnt","view","date"), reverse = True)
+	fav_list = sorted(result, key=itemgetter("date"), reverse = True)
+	#if fav_list[0]['fav_cnt'] == 0 and fav_list[0]['view'] == 0:
+	#	shuffle(fav_list)
+	for q in range(5): shuffle(result)
+	normal_list = result
+	
 
 	fav_line = 0
 	normal_line = 0
 	result = []
 
-	for i in range(len(List[0])):
+	if len(fav_list) >= 300:
+		rng = 300
+	else:
+		rng = len(fav_list)
+	for i in range(rng):
 
-		if i % 3 == 0:
-			post = List[0][fav_line]
+		if (i % 3 == 0  or normal_line >= len(normal_list)) and  fav_line < len(fav_list):
+			post = fav_list[fav_line]
 			fav_line += 1
-		else: 
-			post = List[1][normal_line]
+		elif (i % 3 != 0 or fav_line >= len(fav_list))  and normal_line < len(normal_list): 
+			post = normal_list[normal_line]
 			normal_line += 1
 		
 		is_dedup = False
@@ -81,15 +89,11 @@ def View(db, itag, etag):
 			if post['_id'] == j['_id']:
 				is_dedup = True
 				break
-
 		if is_dedup == True:
 			continue
 		else:
 			result.append(post)
-	'''
-	result = sorted(result, key=itemgetter("date"), reverse = True)
 	return result
-
 
 def db_access():
 	client = pymongo.MongoClient(ip,port)
@@ -112,7 +116,7 @@ if __name__ == '__main__':
 	]
 
 	exclude_tag = []
-	List =View(db_access(),include_tag[1], exclude_tag)
+	List =View(db_access(),include_tag[0], exclude_tag)
 	print(date)
 	for i in range(10):
 		index = random.randrange(0,len(List))
@@ -121,33 +125,3 @@ if __name__ == '__main__':
 		print(List[index]['date'])
 		print()
 	print(len(List))
-
-'''
-timeline = []
-timeline[0] = sorted(result, key=itemgetter("fav_cnt","view","date"), reverse = True)
-timeline[1] = shuffle(result)
-
-fav_line = 0
-normal_line = 0
-result = []
-
-for i in range(len(List[0])):
-
-	if i % 3 == 0:
-		post = List[0][fav_line]
-		fav_line += 1
-	else: 
-		post = List[1][normal_line]
-		normal_line += 1
-	
-	is_dedup = False
-	for j in result:
-		if post['_id'] == j['_id']:
-			is_dedup = True
-			break
-
-	if is_dedup == True:
-		continue
-	else:
-		result.append(post)
-'''
