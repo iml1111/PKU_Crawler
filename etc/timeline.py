@@ -114,14 +114,12 @@ if __name__ == '__main__':
 	#행사&대외활동
 	["행사","봉사","공모전&대외활동","교육&설명회","멘토링"],
 	]
-
 	exclude_tag = []
+	
 	List =View(db_access(),include_tag[0], exclude_tag)
-	print(date)
 	for i in range(10):
-		index = random.randrange(0,len(List))
-		print(List[index]['title'])
-		print(List[index]['tag'])
-		print(List[index]['date'])
+		print(List[i]['title'])
+		print(List[i]['tag'])
+		print(List[i]['date'])
 		print()
 	print(len(List))
