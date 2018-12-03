@@ -61,6 +61,7 @@ def list_parse(bs0bj, URL, page, latest_datetime = None):
 		obj = post.find("td",{"width":"70"}).get_text().strip()
 		obj = obj.replace(".","-")
 		db_record.update({"date":obj})
+		db_record.update({"post":0})
 		db_record.update(tagging(URL, db_record['title']))
 
 		print(db_record['date'])
