@@ -11,7 +11,7 @@ import time
 
 #for Debug
 target = "PK_univ"
-URL = List[:] 
+URL = List[32:] 
 
 
 if __name__ == '__main__':
