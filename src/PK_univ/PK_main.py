@@ -13,8 +13,7 @@ def parsing(driver, URL, is_first):
 	page = 1
 	while True:
 		print('this page is\t| '+ URL['info'] + ' |\t' + str(page))
-		driver.execute_script("goPage(2)")
-		bs0bj = BeautifulSoup(driver.page_source, "html.parser")
+		bs0bj = BeautifulSoup(driver.read(), "html.parser")
 		bs0bj = bs0bj.find("table",{"class":"bbs-list"})
 		 # first 크롤링일 경우 그냥 진행
 		if is_first == True:  
@@ -38,7 +37,7 @@ def parsing(driver, URL, is_first):
 			if addok == 0:
 				break
 			page += 1
-			driver.execute_script("goPage(" + str(page+1) + ")")
+			driver = URLparser(URL['url'] + "&p_pageno=" + str(page))
 
 	#최신 날짜가 갱신되었다면 DB에 넣음
 	if recent_date != None: 
